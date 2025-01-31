@@ -1,0 +1,100 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f9fc;
+  }
+
+  .signup-form {
+    
+  }
+  
+  .signup-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: calc(100% - 20px); /* Adjusted width to align properly */
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: left; /* Aligns checkbox and text to the left */
+    font-size: 14px;
+    margin: 10px 0;
+    width: 100%; /* Ensures it spans the full width of the form */
+    padding-left: 5px; /* Slight padding for better alignment */
+  }
+  
+  
+  .checkbox-container input {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover {
+    background: #333;
+  }
+  
+  .divider {
+    margin: 15px 0;
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .google-button,
+  .facebook-button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    background: white;
+  }
+  
+  .signin-text {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .signin-text a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .signin-text a:hover {
+    text-decoration: underline;
+  }
+  
