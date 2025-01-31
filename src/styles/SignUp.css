@@ -17,11 +17,10 @@
 
 h2 {
     margin-bottom: 20px;
-}
-
-input {
+  }
+  
+  /* input {
     width: calc(100% - 20px);
-    /* Adjusted width to align properly */
     padding: 10px;
     margin: 8px 0;
     border: 1px solid #ccc;
@@ -30,9 +29,9 @@ input {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-.checkbox-container {
+  } */
+  
+  .checkbox-container {
     display: flex;
     align-items: center;
     justify-content: left;
