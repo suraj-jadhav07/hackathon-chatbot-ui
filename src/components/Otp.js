@@ -20,6 +20,7 @@ const Otp = () => {
             setTimeout(() => {
                 setLoading(false);
                 setShowSignIn(true);
+                setError("");
             }, 2000);
         } else {
             setLoading(false);
@@ -34,7 +35,7 @@ const Otp = () => {
         event.preventDefault();
         setOtp("");
         setShowSignIn(false);
-        // navigate("/");
+        navigate("/");
     }
 
     const validateOtp = (data) => {
