@@ -5,19 +5,25 @@ import "../styles/Common.css";
 
 const Otp = () => {
 
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
     const [otp, setOtp] = useState("");
-    const navigate = useNavigate();
+    const [error, setError] = useState("")
 
     const handleOtpClick = (event) => {
         event.preventDefault();
-        console.log('Entered OTP=>', otp);
         setLoading(true);
-        setTimeout(() => {
+        console.log('Entered OTP=>', otp);
+        const validateForm = validateOtp(otp);
+        if(validateForm) {
+            setTimeout(() => {
+                setLoading(false);
+                setShowSignIn(true);
+            }, 2000);
+        } else {
             setLoading(false);
-            setShowSignIn(true);
-        }, 2000);
+        }
     }
 
     const handleOtpChange = (event) => {
@@ -28,14 +34,26 @@ const Otp = () => {
         event.preventDefault();
         setOtp("");
         setShowSignIn(false);
-        navigate("/");
+        // navigate("/");
     }
+
+    const validateOtp = (data) => {
+        console.log("otp received for validation=>",data);
+        // const errorMessage = "";
+        if(!data.trim()) {
+            setError("otp is required");
+            return false;        
+        }
+        return true;
+    }
+
     return (
         <div className="otp-container">
             <div className="otp-box">
                 <h2 className="otp-verfication-heading">{showSignIn ? "OTP verified successfully..!!": "OTP Verification"}</h2>
                 <form className="otp-form">
                     <input className="enter-otp-box" type="text" placeholder="Enter OTP" value={otp} onChange={handleOtpChange} />
+                    {<span className={`otp-error ${error && "show"}`}>{error}</span>}
                     {
                         showSignIn ?
                             <>

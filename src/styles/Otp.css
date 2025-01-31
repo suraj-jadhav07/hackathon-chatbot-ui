@@ -8,7 +8,7 @@
 
 .otp-box {
     width: 400px;
-    height: 150px;
+    height: 190px;
     text-align: center;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -18,6 +18,14 @@
 
 .enter-otp-box {
     width: 250px;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .otp-verfication-heading {
@@ -33,9 +41,18 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     transform: translateX(50%);
+}
+
+.otp-error.show {
+    visibility: visible;
+    color: red;
+}
+
+.otp-error {
+    visibility: hidden;
 }
 
