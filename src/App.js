@@ -1,11 +1,15 @@
 import './App.css';
+import Sidebar from './components/Sidebar';
+import ChatBox from './components/ChatBox';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Hello world!
-      </header>
+    <div className="container">
+      <Sidebar />
+      <main className="main-content">
+        <div className="header">What can I help with?</div>
+        <ChatBox />
+      </main>
     </div>
   );
 }

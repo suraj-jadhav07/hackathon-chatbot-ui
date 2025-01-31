@@ -1,0 +1,113 @@
+/* Hamburger Icon - When Sidebar is Closed */
+.hamburger-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+  
+  /* Sidebar Container */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Hidden initially */
+    width: 300px;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: white;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar.open {
+    left: 0; /* Sidebar slides in */
+  }
+  
+  /* Close Icon Inside Sidebar */
+  .sidebar-close-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    cursor: pointer;
+  }
+  
+  /* Search Bar Styling */
+  .search-bar {
+    width: 90%;
+    padding: 10px;
+    margin: 60px auto 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: #2a2a2a;
+    color: white;
+  }
+  
+  /* New Chat Button */
+  .new-chat-btn {
+    width: 90%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .new-chat-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Chat List */
+  .chat-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  
+  /* Chat List Items */
+  .chat-item {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  
+  .chat-item:hover {
+    background-color: #333;
+    transform: scale(1.02);
+  }
+  
+  /* Scrollbar Customization */
+  .chat-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .chat-list::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+  }
+  
+  .chat-list::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+  
