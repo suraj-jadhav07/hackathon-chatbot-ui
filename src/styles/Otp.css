@@ -55,9 +55,14 @@
     visibility: visible;
     color: red;
     position: absolute;
+    margin-left: -136px;
 }
 
 .otp-error {
     visibility: hidden;
+}
+
+.otp-verfication-heading.success {
+    color: green;
 }
 

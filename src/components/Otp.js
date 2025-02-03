@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Otp.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/Common.css";
+// import axios from "axios";
 
 const Otp = () => {
 
@@ -22,6 +23,17 @@ const Otp = () => {
                 setShowSignIn(true);
                 setError("");
             }, 2000);
+
+            // axios
+            // .post("")
+            // .then((response) => {
+            //     console.log("response =>", response);
+            // })
+            // .catch((error) => {
+            //     console.log("error=>", error);
+            // });
+
+
         } else {
             setLoading(false);
         }
@@ -42,8 +54,11 @@ const Otp = () => {
         console.log("otp received for validation=>",data);
         // const errorMessage = "";
         if(!data.trim()) {
-            setError("otp is required");
-            return false;        
+            setError("OTP is required");
+            return false;
+        } else if(data.trim().length < 6) {
+            setError("OTP does not match");
+            return false;
         }
         return true;
     }
@@ -51,7 +66,7 @@ const Otp = () => {
     return (
         <div className="otp-container">
             <div className="otp-box">
-                <h2 className="otp-verfication-heading">{showSignIn ? "OTP verified successfully..!!": "OTP Verification"}</h2>
+                <h2 className={`otp-verfication-heading ${showSignIn && "success"}`}>{showSignIn ? "OTP verified successfully..!!": "OTP Verification"}</h2>
                 <form className="otp-form">
                     <input className="enter-otp-box" type="text" placeholder="Enter OTP" value={otp} onChange={handleOtpChange} />
                     {<span className={`otp-error ${error && "show"}`}>{error}</span>}

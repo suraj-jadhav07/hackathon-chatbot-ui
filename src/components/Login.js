@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Form.css";
 import fbLogo from "../images/facebook.svg";
 import googleLogo from "../images/google.svg";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -67,7 +68,7 @@ const Login = () => {
                     <img src={fbLogo} alt="Facebook logo" className="logo" />
                     Sign In with Facebook
                 </button>
-                <p className="signin-text">Don't have an account? <a href="/signup">Sign Up</a></p>
+                <p className="signin-text">Don't have an account? <Link to="/signup">Sign Up</Link></p>
             </div>
         </div>
     );
