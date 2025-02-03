@@ -10,7 +10,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #121212;
+  background-color: #059177;
   color: white;
 }
 
@@ -28,7 +28,132 @@ body {
 }
 
 .header {
-  font-size: 24px;
+  font-size: 35px;
+  position: absolute;
+  top: 1rem;
+  padding: 4rem;
+  transition: opacity 0.3s ease;
+}
+
+.header.hidden {
+  opacity: 0; /* Hide heading once the message is sent */
+}
+
+.message-icon {
+  width: 61px;
+  height: auto;
+  cursor: pointer;
+  position: fixed;
+  bottom: 37rem;
+  left: 33rem;
+  z-index: 1000;
+}
+
+.chat-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+}
+
+.chat-history {
+  width: 50%;
   margin-bottom: 20px;
 }
 
+
+
+.chat-message {
+  width: auto; /* Allow the width to adjust based on the content */
+  max-width: 50%; /* Maximum width for the message */
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff; /* White background */
+  color: #059177; /* Text color */
+  border-radius: 30px; /* Rounded corners to create a chat bubble shape */
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-self: flex-end !important; /* Align to the right */
+}
+
+.chat-message::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 15px; /* Adjust this value to move the "tail" to the left */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ffffff; /* Same color as the background */
+}
+
+
+.chat-input {
+  display: flex;
+  width: 50%;
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: black;
+  outline: none;
+  padding: 10px;
+}
+
+.send-btn {
+  background: transparent;
+  border: none;
+  color: #059177;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.chat-message {
+  width: auto;
+  max-width: 50%;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  color: #059177;
+  border-radius: 30px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-self: flex-end;
+  transition: 0.3s;
+}
+
+.chat-message:hover .message-actions {
+  display: flex;
+}
+
+.message-actions {
+  display: none;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  gap: 10px;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+  font-size: 20px; /* Adjust the icon size */
+  transition: color 0.2s;
+}
+
+.edit-icon:hover {
+  color: #059177;
+}
+
+.delete-icon:hover {
+  color: red;
+}

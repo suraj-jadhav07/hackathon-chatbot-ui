@@ -1,113 +1,225 @@
+/* Global Variables for Light and Dark Modes */
+:root {
+  --background-color-light: white;
+  --background-color-dark: #333;
+  --sidebar-bg-color-light: #f4f4f4;
+  --sidebar-bg-color-dark: #1e1e1e;
+  --text-color-light: black;
+  --text-color-dark: white;
+  --button-bg-color-light: #059177;
+  --button-bg-color-dark: #4CAF50;
+  --hover-bg-color-light: #a0d6b4;
+  --hover-bg-color-dark: #2e7d32;
+  --logout-btn-bg-light: #ff3b30;
+  --logout-btn-bg-dark: #e91e63;
+  --logout-btn-hover-light: #ff6f61;
+  --logout-btn-hover-dark: #d81b60;
+  --mode-btn-bg-light: #f0f0f0;
+  --mode-btn-bg-dark: #444;
+  --mode-btn-hover-light: #ddd;
+  --mode-btn-hover-dark: #666;
+}
 /* Hamburger Icon - When Sidebar is Closed */
 .hamburger-icon {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-  
-  /* Sidebar Container */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px; /* Hidden initially */
-    width: 300px;
-    height: 100%;
-    background-color: #1e1e1e;
-    color: white;
-    padding: 20px;
-    transition: left 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .sidebar.open {
-    left: 0; /* Sidebar slides in */
-  }
-  
-  /* Close Icon Inside Sidebar */
-  .sidebar-close-icon {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 30px;
-    cursor: pointer;
-  }
-  
-  /* Search Bar Styling */
-  .search-bar {
-    width: 90%;
-    padding: 10px;
-    margin: 60px auto 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    background: #2a2a2a;
-    color: white;
-  }
-  
-  /* New Chat Button */
-  .new-chat-btn {
-    width: 90%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px auto;
-    display: block;
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-  
-  .new-chat-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Chat List */
-  .chat-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    overflow-y: auto;
-    flex-grow: 1;
-  }
-  
-  /* Chat List Items */
-  .chat-item {
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-  }
-  
-  .chat-item:hover {
-    background-color: #333;
-    transform: scale(1.02);
-  }
-  
-  /* Scrollbar Customization */
-  .chat-list::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .chat-list::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 3px;
-  }
-  
-  .chat-list::-webkit-scrollbar-thumb:hover {
-    background: #777;
-  }
-  
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+.sidebarArrow{
+width: 34px !important;
+height: auto !important;
+cursor: pointer;
+position: absolute;
+top: -4px;
+left: -5px;
+z-index: 1000;
+}
+
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Hidden initially */
+  width: 300px;
+  height: 100%;
+  background-color: var(--sidebar-bg-color-light);
+  color: var(--text-color-light);
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar.open {
+  left: 0; /* Sidebar slides in */
+}
+
+/* Search Bar Styling */
+/* .search-bar {
+  width: 90%;
+  padding: 10px;
+  margin: 60px auto 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: #059177;
+  color: white;
+} */
+
+/* Chat List */
+.chat-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* Chat List Items */
+.chat-item {
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.chat-item:hover {
+  background-color: var(--hover-bg-color-light);
+  transform: scale(1.02);
+}
+
+/* Scrollbar Customization */
+.chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+.search-bar::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.sidebar.dark-mode {
+  background-color: var( --mode-btn-bg-dark);
+  color: var(--text-color-dark);
+}
+
+/* .search-bar.dark-mode {
+  background: #333;
+  color: white;
+} */
+
+/* Logout Button */
+.logout-btn {
+  width: 90%;
+  padding: 12px;
+  background-color: var(  --button-bg-color-light
+  );
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: var(--logout-btn-hover-light);
+  transform: scale(1.05);
+}
+
+/* Dark Mode for Logout Button */
+.logout-btn.dark-mode {
+  background-color: var(--logout-btn-bg-dark);
+}
+
+.logout-btn.dark-mode:hover {
+  background-color: var(--logout-btn-hover-dark);
+}
+
+.logout-btn .logout-icon {
+  font-size: 18px;
+}
+
+/* Mode Toggle Button */
+.mode-toggle-btn {
+  background-color: var(--mode-btn-bg-light);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.mode-toggle-btn:hover {
+  background-color: var(--mode-btn-hover-light);
+  transform: scale(1.05);
+}
+
+/* Dark Mode for Mode Button */
+.mode-toggle-btn.dark-mode {
+  background-color: var(--mode-btn-bg-dark);
+}
+
+.mode-toggle-btn.dark-mode:hover {
+  background-color: var(--mode-btn-hover-dark);
+}
+
+
+
+.search-bar {
+  background: #059177;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 46px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-bar:hover {
+  background-color: var(--hover-bg-color-light);
+  transform: scale(1.05);
+}
+
+/* Dark Mode for Mode Button */
+.search-bar.dark-mode {
+  background-color:#FFBF00	;
+}
+
+.search-bar.dark-mode:hover {
+  background-color: var(--mode-btn-hover-dark);
+}
