@@ -1,24 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Form.css";
 import fbLogo from "../images/facebook.svg";
 import googleLogo from "../images/google.svg";
 
 
 const Login = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState({ email: "", password: "" });
+
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let valid = true;
+        let newErrors = { email: "", password: "" };
+
+        if (!email) {
+            newErrors.email = "Email cannot be empty";
+            valid = false;
+        } else if(!validateEmail(email)) {
+            newErrors.email = "Invalid email format";
+            valid = false;
+        }
+
+        if (!password) {
+            newErrors.password = "Password cannot be empty";
+            valid = false;
+        }
+
+        setErrors(newErrors);
+
+        if (valid) {
+            console.log("Form submitted", { email, password });
+        }
+    };
+
+
     return (
         <div className="form-container">
             <div className="form-box">
                 <h2 className="form-header">Sign in</h2>
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                     <label className="input-label">Email</label>
-                    <input type="email" placeholder="Email" defaultValue="your@email.com" />
+                    <input type="email" placeholder="your@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    {errors.email && <p className="error-message">{errors.email}</p>}
                     <label className="input-label">Password</label>
-                    <input type="password" placeholder="Password" defaultValue="••••••" />
+                    <input type="password" placeholder="••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    {errors.password && <p className="error-message">{errors.password}</p>}
                     <label className="checkbox-container">
                         <input type="checkbox" /> Remember me
                     </label>
+                    <button className="submit-button" type="submit">Sign In</button>
                 </form>
-                <button className="submit-button">Sign In</button>
                 <a href="#" className="link-forgot-password">Forgot your password?</a>
                 <div className="divider">or</div>
                 <button className="google-button">
