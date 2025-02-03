@@ -4,6 +4,7 @@
     align-items: center;
     height: 100vh;
     background-color: #f7f9fc;
+    background-image: url('../images/AI_screen.webp');
 }
 
 .form-box {
