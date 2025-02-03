@@ -69,6 +69,7 @@ input[type="text"] {
     display: block;
     text-align: center;
     margin: 10px 0;
+    color: white;
 }
 
 a {
@@ -116,10 +117,15 @@ a:hover {
     text-align: center;
     font-size: 14px;
     margin-top: 10px;
+    color: white;
 }
 
 .error-message {
     margin: 2px;
     color: #ff0000eb;
     font-size: 14px;
+}
+
+.to-signup-signin {
+    color: #CAF7FE;
 }

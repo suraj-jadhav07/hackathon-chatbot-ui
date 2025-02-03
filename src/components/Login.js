@@ -78,8 +78,8 @@ const Login = () => {
                     <button className="submit-button" type="submit">Sign In</button>
                 </form>
                 <a href="#" className="link-forgot-password">Forgot your password?</a>
-                {/* <div className="divider">or</div>
-                <button className="google-button">
+                <div className="divider">or</div>
+                {/* <button className="google-button">
                     <img src={googleLogo} alt="Google logo" className="logo" />
                     Sign In with Google
                 </button>
@@ -87,7 +87,7 @@ const Login = () => {
                     <img src={fbLogo} alt="Facebook logo" className="logo" />
                     Sign In with Facebook
                 </button> */}
-                {/* <p className="signin-text">Don't have an account? <a href="/signup">Sign Up</a></p> */}
+                <p className="signin-text">Don't have an account? <Link className="to-signup-signin" to="/signup">Sign Up</Link></p>
             </div>
         </div>
     );

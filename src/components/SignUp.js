@@ -92,13 +92,13 @@ const Signup = () => {
                     <label className="input-label">Password</label>
                     <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" defaultValue="••••••" />
                     {errors && errors.password && <span className="error-form">{errors.password}</span>}
-                    <label className="checkbox-container">
+                    {/* <label className="checkbox-container">
                         <input type="checkbox" /> I want to receive updates via email.
-                    </label>
+                    </label> */}
                 </form>
                 <button className="submit-button" onClick={handleSignUp} disabled={loading}>{loading ? <span className="loader"></span> : "Sign Up"}</button>
                 <div className="divider">or</div>
-                <p className="signin-text">Already have an account? <Link to="/">Sign in</Link></p>
+                <p className="signin-text">Already have an account? <Link className="to-signup-signin" to="/">Sign in</Link></p>
             </div>
         </div>
     );
