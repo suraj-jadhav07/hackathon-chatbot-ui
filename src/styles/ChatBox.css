@@ -2,10 +2,11 @@
     display: flex;
     width: 50%;
     background: white;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 10px;
     margin-top: 20px;
     align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .chat-input input {
@@ -15,6 +16,7 @@
     color: black;
     outline: none;
     padding: 10px;
+    font-size: 16px;
 }
 
 .send-btn {
@@ -23,4 +25,47 @@
     color: #059177;
     font-size: 20px;
     cursor: pointer;
+    transition: color 0.3s;
 }
+
+.send-btn:hover {
+    color: #04695e;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px;
+    background: white;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.attach-btn {
+    cursor: pointer;
+    padding: 8px;
+    color: gray;
+    transition: color 0.3s;
+}
+
+.attach-btn:hover {
+    color: black;
+}
+
+.image-preview {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  

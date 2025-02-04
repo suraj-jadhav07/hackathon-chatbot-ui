@@ -1,45 +1,67 @@
 import React, { useState } from "react";
 import "../styles/ChatBox.css";
-import { Edit, Delete } from "@mui/icons-material"; // Import Material UI icons
+import { Edit, Delete, AttachFile } from "@mui/icons-material"; // Import Material UI icons
 
 const ChatBox = ({ onSendMessage, messageSent }) => {
   const [message, setMessage] = useState("");
   const [sentMessages, setSentMessages] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
+  const [attachments, setAttachments] = useState([]);
 
   const sendMessage = () => {
-    if (message.trim()) {
+    if (message.trim() || attachments.length) {
+      const newMessage = { text: message, files: attachments };
+
       if (editingIndex !== null) {
-        // Edit message if we're in editing mode
         const updatedMessages = [...sentMessages];
-        updatedMessages[editingIndex] = message;
+        updatedMessages[editingIndex] = newMessage;
         setSentMessages(updatedMessages);
-        setEditingIndex(null); // Reset editing mode
+        setEditingIndex(null);
       } else {
-        // Add new message if not editing
-        setSentMessages([...sentMessages, message]);
+        setSentMessages([...sentMessages, newMessage]);
       }
-      setMessage(""); // Clear input after sending
-      onSendMessage(); // Call to update messageSent state in App.js
+      setMessage("");
+      setAttachments([]);
+      onSendMessage();
     }
   };
 
   const handleDeleteMessage = (index) => {
-    const updatedMessages = sentMessages.filter((_, i) => i !== index);
-    setSentMessages(updatedMessages);
+    setSentMessages(sentMessages.filter((_, i) => i !== index));
   };
 
   const handleEditMessage = (index) => {
-    setMessage(sentMessages[index]);
+    setMessage(sentMessages[index].text);
+    setAttachments(sentMessages[index].files);
     setEditingIndex(index);
   };
 
+  const handleFileUpload = (event) => {
+    const files = Array.from(event.target.files);
+    console.log("Uploaded files:", files);
+    setAttachments([...attachments, ...files]);
+  };
+  
   return (
     <div className="chat-box">
       <div className="chat-history">
         {sentMessages.map((msg, index) => (
           <div key={index} className="chat-message">
-            {msg}
+            <p>{msg.text}</p>
+            <div className="attachments">
+              {msg.files.map((file, i) => (
+               <div key={i} className="file-preview">
+               {file.type.startsWith("image/") ? (
+                 <img src={URL.createObjectURL(file)} alt="attachment" className="image-preview" />
+               ) : (
+                 <a href={URL.createObjectURL(file)} target="_blank" rel="noopener noreferrer">
+                   📎 {file.name}
+                 </a>
+               )}
+             </div>
+             
+              ))}
+            </div>
             <div className="message-actions">
               <span onClick={() => handleEditMessage(index)} className="edit-icon">
                 <Edit fontSize="small" />
@@ -52,16 +74,24 @@ const ChatBox = ({ onSendMessage, messageSent }) => {
         ))}
       </div>
 
-      <div
-        className="chat-input"
-        style={{ marginTop: messageSent ? "25rem" : "20px" }} // Adjust margin-top based on messageSent
-      >
+      <div className="chat-input" style={{ marginTop: messageSent ? "25rem" : "20px" }}>
         <input
           type="text"
-          placeholder="Message ChatGPT"
+          placeholder="Message ChatBox"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
+        <input
+          type="file"
+          multiple
+          accept="image/*,.pdf,.doc,.docx"
+          onChange={handleFileUpload}
+          style={{ display: "none" }}
+          id="file-upload"
+        />
+        <label htmlFor="file-upload" className="attach-btn">
+          <AttachFile />
+        </label>
         <button className="send-btn" onClick={sendMessage}>
           ➤
         </button>
