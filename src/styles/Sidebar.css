@@ -66,13 +66,13 @@
   left: -300px; /* Hidden initially */
   width: 260px;
   height: 100%;
-  background-color: var(--sidebar-bg-color-light);
+  /* background-color: var(--sidebar-bg-color-light); */
   color: var(--text-color-light);
   padding: 20px;
   transition: left 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 18px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar.open {
@@ -193,7 +193,7 @@ body.dark-mode {
 
 /* Mode Toggle Button */
 .mode-toggle-btn {
-  background-color: var(--mode-btn-bg-light);
+  background-color:white;
   border: none;
   padding: 12px 20px;
   font-size: 16px;
@@ -204,8 +204,9 @@ body.dark-mode {
 }
 
 .mode-toggle-btn:hover {
-  background-color: var(--mode-btn-hover-light);
+  background-color: #f7f9fc;
   transform: scale(1.05);
+  box-shadow: 8px 11px 16px #02413a;
 }
 
 /* Dark Mode for Mode Button */
@@ -220,7 +221,7 @@ body.dark-mode {
 
 
 .search-bar {
-  background: #059177;
+  background: white;
   /* background-color: var(--mode-btn-bg-light); */
   border: none;
   padding: 14px 10px !important;
@@ -232,8 +233,9 @@ body.dark-mode {
 }
 
 .search-bar:hover {
-  background-color: #e91e63;
+  background-color: #f7f9fc;
   transform: scale(1.05);
+  box-shadow: 8px 11px 16px #02413a;
 }
 
 /* Dark Mode for Mode Button */

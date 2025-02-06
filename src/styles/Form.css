@@ -41,6 +41,7 @@ input[type="text"] {
     border-radius: 4px;
     font-size: 14px;
     color: #555555cf;
+    outline: none;
 }
 
 .checkbox-container {

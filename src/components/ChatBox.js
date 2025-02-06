@@ -9,11 +9,10 @@ const ChatBox = ({ onSendMessage, messageSent }) => {
   const [message, setMessage] = useState("");
   const [sentMessages, setSentMessages] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [attachments, setAttachments] = useState([]);
 
   const sendMessage = () => {
-    if (message.trim() || attachments.length) {
-      const newMessage = { text: message, files: attachments };
+    if (message.trim()) {
+      const newMessage = { text: message};
 
       if (editingIndex !== null) {
         const updatedMessages = [...sentMessages];
@@ -24,7 +23,6 @@ const ChatBox = ({ onSendMessage, messageSent }) => {
         setSentMessages([...sentMessages, newMessage]);
       }
       setMessage("");
-      setAttachments([]);
       // onSendMessage();
     }
   };
@@ -35,15 +33,9 @@ const ChatBox = ({ onSendMessage, messageSent }) => {
 
   const handleEditMessage = (index) => {
     setMessage(sentMessages[index].text);
-    setAttachments(sentMessages[index].files);
     setEditingIndex(index);
   };
 
-  const handleFileUpload = (event) => {
-    const files = Array.from(event.target.files);
-    console.log("Uploaded files:", files);
-    setAttachments([...attachments, ...files]);
-  };
 //   <div className={`header heading ${messageSent ? 'hidden' : ''}`}>
 //   <img src={message} alt="message" className="message-icon" />
 //   How can I help with?
@@ -134,27 +126,6 @@ return (
           {sentMessages.map((msg, index) => (
             <div key={index} className="chat-message">
               <p>{msg.text}</p>
-              <div className="attachments">
-                {msg.files.map((file, i) => (
-                  <div key={i} className="file-preview">
-                    {file.type.startsWith("image/") ? (
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt="attachment"
-                        className="image-preview"
-                      />
-                    ) : (
-                      <a
-                        href={URL.createObjectURL(file)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        📎 {file.name}
-                      </a>
-                    )}
-                  </div>
-                ))}
-              </div>
               <div className="message-actions">
                 <span onClick={() => handleEditMessage(index)} className="edit-icon">
                   <Edit fontSize="small" />
@@ -175,17 +146,6 @@ return (
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <input
-            type="file"
-            multiple
-            accept="image/*,.pdf,.doc,.docx"
-            onChange={handleFileUpload}
-            style={{ display: "none" }}
-            id="file-upload"
-          />
-          <label htmlFor="file-upload" className="attach-btn">
-            <AttachFile />
-          </label>
           <button className="send-btn" onClick={sendMessage}>
             ➤
           </button>
