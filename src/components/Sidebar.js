@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Sidebar.css';
 import hamburgerIcon from '../images/Hamburger.png';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuIcon from "@mui/icons-material/Menu";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'; // Updated Logout Icon
 import { IconButton } from "@mui/material";
@@ -71,7 +72,7 @@ const Sidebar = () => {
       <div className={`sidebar ${isOpen ? 'open' : 'closed'} ${isDarkMode ? 'dark-mode' : ''}`}>
         {/* Close Icon inside Sidebar */}
         <IconButton onClick={toggleSidebar}>
-          <MenuIcon className="hamburger-icon sidebar-close-icon" />
+          <ArrowBackIcon className="arrow-icon sidebar-close-icon" />
         </IconButton>
         {/* <img 
           src={hamburgerIcon} 

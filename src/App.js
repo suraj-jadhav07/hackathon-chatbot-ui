@@ -18,24 +18,25 @@ function App() {
 
   return (
     <div className="container">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <main className="main-content">
         <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/otp" element={<OTP />} />
+        <Route path="/chatbox" element={<ChatBox />} />
 
           <Route
             path="/chatbox"
             element={
               <>
                 {/* Conditionally render the header */}
-                <div className={`header heading ${messageSent ? 'hidden' : ''}`}>
+                {/* <div className={`header heading ${messageSent ? 'hidden' : ''}`}>
                   <img src={message} alt="message" className="message-icon" />
                   How can I help with?
                 </div>
 
-                <ChatBox onSendMessage={handleSendMessage} messageSent={messageSent} />
+                <ChatBox onSendMessage={handleSendMessage} messageSent={messageSent} /> */}
               </>
             }
           />

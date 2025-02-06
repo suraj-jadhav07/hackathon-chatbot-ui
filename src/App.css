@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -36,7 +36,7 @@ body {
 }
 
 .header.hidden {
-  opacity: 0; /* Hide heading once the message is sent */
+  opacity: 0;
 }
 
 .message-icon {
@@ -65,28 +65,28 @@ body {
 
 
 .chat-message {
-  width: auto; /* Allow the width to adjust based on the content */
-  max-width: 50%; /* Maximum width for the message */
+  width: auto; 
+  max-width: 50%; 
   margin-bottom: 20px;
   padding: 15px;
-  background-color: #ffffff; /* White background */
-  color: #059177; /* Text color */
-  border-radius: 30px; /* Rounded corners to create a chat bubble shape */
+  background-color: #ffffff; 
+  color: #059177; 
+  border-radius: 30px; 
   position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  align-self: flex-end !important; /* Align to the right */
+  align-self: flex-end !important; 
 }
 
 .chat-message::before {
   content: '';
   position: absolute;
   bottom: -7px;
-  left: 15px; /* Adjust this value to move the "tail" to the left */
+  left: 15px; 
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #ffffff; /* Same color as the background */
+  border-top: 10px solid #ffffff;
 }
 
 
@@ -146,7 +146,7 @@ body {
 .edit-icon,
 .delete-icon {
   cursor: pointer;
-  font-size: 20px; /* Adjust the icon size */
+  font-size: 20px; 
   transition: color 0.2s;
 }
 
@@ -156,4 +156,4 @@ body {
 
 .delete-icon:hover {
   color: red;
-}
+} */

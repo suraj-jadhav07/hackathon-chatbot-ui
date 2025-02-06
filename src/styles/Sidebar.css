@@ -25,26 +25,42 @@
   height: auto;
   cursor: pointer;
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: 20px;
   z-index: 1000;
 }
-.sidebarArrow{
-width: 34px !important;
-height: auto !important;
-cursor: pointer;
-position: absolute;
-top: -4px;
-left: -5px;
-z-index: 1000;
+.arrow-icon{
+  margin-right: 15rem;
+  margin-top: -16px;
+  
+  &:hover{
+    background-color: unset !important;
+    color: unset !important;
+  }
+  &:focus{
+    background-color: unset !important;
+    color: unset !important;
+  }
 }
+.sidebarArrow {
+  width: 34px !important;
+  height: auto !important;
+  cursor: pointer;
+  position: absolute;
+  top: -4px;
+  left: -5px;
+  z-index: 1000;
+
+}
+
+
 
 /* Sidebar Container */
 .sidebar {
   position: fixed;
   top: 0;
   left: -300px; /* Hidden initially */
-  width: 300px;
+  width: 260px;
   height: 100%;
   background-color: var(--sidebar-bg-color-light);
   color: var(--text-color-light);
@@ -144,7 +160,7 @@ body.dark-mode {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  margin: 10px auto;
+  margin: 30px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,17 +217,18 @@ body.dark-mode {
 
 .search-bar {
   background: #059177;
+  /* background-color: var(--mode-btn-bg-light); */
   border: none;
-  padding: 10px 20px;
+  padding: 14px 10px !important;
   font-size: 16px;
-  border-radius: 25px;
+  border-radius: 25px !important;
   cursor: pointer;
-  margin-top: 46px;
+  margin-top: 20px;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .search-bar:hover {
-  background-color: var(--hover-bg-color-light);
+  background-color: #e91e63;
   transform: scale(1.05);
 }
 
