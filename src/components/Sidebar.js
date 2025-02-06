@@ -87,7 +87,6 @@ const Sidebar = () => {
         <input 
           type="text" 
           placeholder="Search chats..." 
-          // className="search-bar" 
           className={`search-bar ${isDarkMode ? 'dark-mode' : ''}`}
           value={searchTerm} 
           onChange={handleSearch} 

@@ -156,13 +156,12 @@ body.dark-mode {
 
 /* Logout Button */
 .logout-btn {
-  width: 90%;
+  width: 100%;
   padding: 12px;
-  background-color: var(  --button-bg-color-light
-  );
+  background-color: var(  --button-bg-color-light);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
   margin: 30px auto;
@@ -196,7 +195,7 @@ body.dark-mode {
 .mode-toggle-btn {
   background-color: var(--mode-btn-bg-light);
   border: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   border-radius: 25px;
   cursor: pointer;
