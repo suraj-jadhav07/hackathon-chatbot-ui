@@ -261,3 +261,6 @@ body.dark-mode {
 .search-bar.dark-mode:hover {
   background-color: var(--mode-btn-hover-dark);
 }
+.search-bar::placeholder {
+  color: black;
+}
