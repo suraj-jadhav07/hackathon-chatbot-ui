@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styles/Form.css";
 import "../styles/Common.css";
 import { useNavigate, Link } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
+import { API_CONST } from "../core/constants";
 
 const Signup = () => {
 
@@ -25,20 +26,24 @@ const Signup = () => {
             setLoading(false);
             setErrors(validationErrors);
         } else {
-            setTimeout(() => {
+            axios
+            .post(API_CONST.REGISTER, {
+                username: formData.name,
+                email: formData.email,
+                password: formData.password
+            })
+            .then((response) => {
+                console.log("Register successful:", response.data);
                 setLoading(false);
-                navigate("/otp");
-            }, 2000);
-
-            // axios
-            // .post("")
-            // .then((response) => {
-            //     console.log("reponse=>",response);
-            //     setLoading(false);
-            // })
-            // .catch((error) => {
-            //     console.log("error =>", error);
-            // });
+                setTimeout(() => {
+                    setLoading(false);
+                    navigate("/otp");
+                }, 2000);
+            })
+            .catch((error) => {
+                console.error("Register failed:", error.response?.data || error.message);
+                setLoading(false);
+            });
 
         }
     }

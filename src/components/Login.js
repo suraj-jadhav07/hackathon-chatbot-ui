@@ -4,6 +4,7 @@ import "../styles/Form.css";
 // import googleLogo from "../images/google.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_CONST } from "../core/constants";
 
 
 const Login = () => {
@@ -43,21 +44,21 @@ const Login = () => {
 
         if (valid) {
             console.log("Form submitted", { email, password });
-            // handleSubmitAPI(email, password);
+            handleSubmitAPI(email, password);
         }
     }
 
     const handleSubmitAPI = async  (email, password) => {
         try {
-            const response = await axios.post("https://api.example.com/login", {
+            const response = await axios.post(API_CONST.LOGIN, {
               email,
               password,
             });
       
-            localStorage.setItem("token", response.data.token);
-            alert("Login successful!");
+            console.log("Login successful:", response.data);
           } catch (err) {
-            setErrors("Invalid credentials");
+            console.error("Login failed:", err.response?.data || err.message);
+            setErrors(err.response?.data?.message || "Login failed");
           }
     }
 
