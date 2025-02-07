@@ -5,13 +5,14 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuIcon from "@mui/icons-material/Menu";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconButton } from "@mui/material";
+import { Chat, Add } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ chats, activeChat, setActiveChat, handleNewChat }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [chats, setChats] = useState(["Chat 1", "Chat 2", "Chat 3"]);
+ 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
 
@@ -39,16 +40,13 @@ const Sidebar = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleNewChat = () => {
-    const newChatName = `Chat ${chats.length + 1}`;
-    setChats([...chats, newChatName]);
-  };
+
 
   const handleLogout = () => {
     console.log("User logged out");
     setIsLoggedIn(false);
     localStorage.removeItem('sidebarState');
-    navigate('/blank');
+    navigate('/');
   };
 
   const toggleMode = () => {
@@ -93,15 +91,19 @@ const Sidebar = () => {
         />
 
         {/* New Chat Button */}
-        <button className="mode-toggle-btn" onClick={handleNewChat}>➕ New Chat</button>
+        <button className="mode-toggle-btn" onClick={handleNewChat}><Add fontSize="medium" className='addbutton' /> New Chat</button>
 
         {/* Chat List */}
         <ul className="chat-list">
           {chats
             .filter(chat => chat.toLowerCase().includes(searchTerm.toLowerCase()))
             .map((chat, index) => (
-              <li key={index} className="chat-item">
-                🗨️ {chat}
+              <li key={index} className={`chat-item ${chat === activeChat ? "active" : ""}`}
+              onClick={() => setActiveChat(chat)}
+              >
+                 
+                    <Chat fontSize="small" />
+                  {chat}
               </li>
             ))}
         </ul>

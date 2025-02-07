@@ -114,8 +114,18 @@
 }
 
 .chat-item:hover {
-  background-color: var(--hover-bg-color-light);
-  transform: scale(1.02);
+  background-color: var(--logout-btn-hover-light);
+  color: #fff;
+}
+
+.chat-item.active{
+
+  background-color: var(  --button-bg-color-light);
+  color: #fff;
+  &:hover{
+    background-color: var(--logout-btn-hover-light);
+  }
+  
 }
 
 /* Scrollbar Customization */
@@ -171,6 +181,11 @@ body.dark-mode {
   gap: 10px;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s;
+}
+
+.addbutton{
+  align-items: center;
+  justify-content: center;
 }
 
 .logout-btn:hover {

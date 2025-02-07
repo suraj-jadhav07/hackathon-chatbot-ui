@@ -243,3 +243,22 @@ background-size: cover;
     margin-left: 20rem;
     font-size: 35px;
 } */
+
+
+  
+  /* User message - Align to the right */
+  .user {
+   
+    align-self: flex-end;
+    text-align: right;
+  
+  }
+  
+  /* Bot message - Align to the left */
+  .bot {
+  
+    align-self: flex-start;
+    text-align: left;
+ 
+  }
+  
