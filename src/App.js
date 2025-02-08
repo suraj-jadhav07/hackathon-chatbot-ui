@@ -3,11 +3,13 @@ import Sidebar from './components/Sidebar';
 import ChatBox from './components/ChatBox';
 import message from './images/message.png';
 import BlankPage from './components/BlankPage';
+import Dashboard from './components/Dashboard';
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import OTP from "./components/Otp";
 import React, { useState } from 'react';
+
 
 function App() {
   const [messageSent, setMessageSent] = useState(false);
@@ -25,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/otp" element={<OTP />} />
         <Route path="/chatbox" element={<ChatBox />} />
+        <Route path='/dashboard' element={<Dashboard/>} />
 
           <Route
             path="/chatbox"
