@@ -1,0 +1,153 @@
+.student-management {
+    padding: 20px;
+    font-family: "Arial", sans-serif;
+}
+
+.student-management-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.student-management-header h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.student-management-header p {
+    color: #777;
+}
+
+.add-student-btn {
+    align-self: flex-start;
+    padding: 8px 15px;
+    background-color: #1d4ed8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-student-btn:hover {
+    background-color: #1e40af;
+}
+
+.student-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.student-form input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.student-management-save-btn,
+.student-management-cancel-btn {
+    padding: 9px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.student-management-save-btn {
+    background-color: #1d4ed8;
+    color: white;
+    min-width: 97px;
+    height: 36px;
+}
+
+.student-management-cancel-btn {
+    background-color: #ddd;
+    color: black;
+    min-width: 97px;
+    height: 36px;
+}
+
+.student-management-save-btn:hover {
+    background-color: #1e40af;
+}
+
+.student-management-cancel-btn:hover {
+    background-color: #bbb;
+}
+
+.student-management-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.student-management-table th,
+.student-management-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.student-management-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.student-management-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.student-management-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.student-management-edit-btn,
+.student-management-delete-btn {
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+.student-management-edit-btn {
+    background-color: #f1f5f9;
+}
+
+.student-management-delete-btn {
+    background-color: #ef4444;
+    color: white;
+}
+
+.student-management-delete-btn:hover {
+    background-color: #dc2626;
+}
+
+.stmg-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.stmg-error-form {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.stmg-button-group {
+    display: flex;
+    gap: 10px;  /* Adds space between buttons */
+    margin-bottom: 10px; /* Creates space between form and buttons */
+    align-self: flex-start;
+}

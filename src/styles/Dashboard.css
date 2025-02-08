@@ -1,237 +1,43 @@
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    color: black;
+.dashboard-container {
+    padding: 20px;
 }
-  
-:root {
-    --primary-color: #344767;
-    --secondary-color: gray;
-    --background-color: #f9f9f9;
+
+.dashboard-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
-  
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background:url(../images/ed.webp) ;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-  
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+.dashboard-stats {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    z-index: 1000;
-}
-  
-.navbar-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-  
-.navbar-icons {
-    display: flex;
-    align-items: center;
     gap: 20px;
 }
-  
-.search-container {
-    position: relative;
-}
-  
-.search-input {
-    padding: 8px 35px 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
-  
-.search-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--secondary-color);
-    font-size: 18px;
-}
-  
-.user-icon {
-    font-size: 22px;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: color 0.3s;
-}
 
-.user-icon:hover {
-    color: var(--secondary-color);
-}
-  
-/* Sidebar */
-.sidebar {
-    
-    position: fixed;
-    left: 0;
-    top: 4.5rem;
-    width: 220px;
-    height: calc(100vh - 60px);
-    background: white;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    padding-top: 15px;
-}
-  
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-  
-.sidebar li {
-    padding: 12px 20px;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
+.stat-box {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    color: var(--primary-color);
-}
-  
-.sidebar li:hover,
-.sidebar .active {
-    background: #f0f0f0;
-    color: #222;
-}
-
-/* Sidebar icons */
-.sidebar li svg {
-    font-size: 20px;
-    color: var(--primary-color);
-    transition: color 0.3s;
-}
-
-.sidebar li:hover svg {
-    color: #222;
-}
-  
-/* Main Content */
-.main-content {
-    margin-left: 220px;
-    margin-top: 60px;
-    padding: 20px;
-    background: var(--background-color);
-    height: 100vh;
-}
-  
-.main-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-}
-  
-/* Cards */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-}
-  
-.card {
-    background: white;
+    background-color: #f8f9fa;
     padding: 15px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-  
-.card-title {
-    color: var(--secondary-color);
+
+.stat-icon {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #2c3e50;
+}
+
+.stat-box h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.stat-box p {
+    margin: 0;
+    color: #555;
     font-size: 14px;
 }
-  
-.card-value {
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-
-/* Help Card */
-.help-card {
-    /* background: linear-gradient(135deg, #1E90FF, #00C6FF); */
-    
-    /* background: url(../images/sv.jpg); */
-    background-image: linear-gradient(310deg, rgb(33, 82, 255), rgb(232 235 235));
-    color: white;
-    border-radius: 13px;
-    padding: 18px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 8rem;
-  }
-  
-  .icon-container {
-    background: white;
-    color: #007BFF;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-  }
-  
-  .icon-container svg {
-    font-size: 20px;
-  }
-  
-  .help-card h3 {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .help-card p {
-    /* font-size: 14px; */
-    margin: 0 0 15px;
-    opacity: 0.9;
-  }
-  
-  .doc-button {
-    display: inline-block;
-    background: white;
-    color: black;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.3s ease;
-  }
-  
-  .doc-button:hover {
-    background: #f0f0f0;
-  }
-  .icon-wrapper {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 28px;  /* Adjust size as needed */
-    height: 28px;
-    background: rgba(52, 71, 103, 0.1); /* Light background for icons */
-    border-radius: 6px; /* Slightly rounded */
-    margin-right: 8px; /* Space between icon and text */
-}
-
-  

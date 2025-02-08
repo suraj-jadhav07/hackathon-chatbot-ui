@@ -8,7 +8,11 @@ import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import OTP from "./components/Otp";
+import StudentManagement from './components/StudentManagement';
+import CreateExam from './components/CreateExam';
+import Layout from './components/Layout';
 import React, { useState } from 'react';
+import ExamHistory from './components/ExamHistory';
 
 
 function App() {
@@ -23,28 +27,21 @@ function App() {
       {/* <Sidebar /> */}
       <main className="main-content">
         <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/otp" element={<OTP />} />
-        <Route path="/chatbox" element={<ChatBox />} />
-        <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/otp" element={<OTP />} />
+          <Route path="/chatbox" element={<ChatBox />} />
+          <Route path="/layout" element={<Layout />} />
 
-          <Route
-            path="/chatbox"
-            element={
-              <>
-                {/* Conditionally render the header */}
-                {/* <div className={`header heading ${messageSent ? 'hidden' : ''}`}>
-                  <img src={message} alt="message" className="message-icon" />
-                  How can I help with?
-                </div>
+        {/* Protected Routes - Wrapped in Layout */}
+        <Route path="/dashboard/*" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="students" element={<StudentManagement />} />
+          <Route path="createExam" element={<CreateExam />} />
+          <Route path="chatbox" element={<ChatBox />} />
+          <Route path="examHistory" element={<ExamHistory />} />
+        </Route>
 
-                <ChatBox onSendMessage={handleSendMessage} messageSent={messageSent} /> */}
-              </>
-            }
-          />
-           
-          <Route path="/blank" element={<BlankPage />} />
         </Routes>
       </main>
     </div>

@@ -1,37 +1,34 @@
 import React, { useState } from "react";
 import "../styles/ChatBox.css";
-import { Edit, Delete, Send  } from "@mui/icons-material";
-import Sidebar from '../components/Sidebar';
+import { Edit, Delete } from "@mui/icons-material";
 
 const ChatBox = () => {
-  const [chats, setChats] = useState({ "Chat 1": [] }); // Store multiple chats
-  const [activeChat, setActiveChat] = useState("Chat 1"); // Track current chat
+  const [chats, setChats] = useState({ "Chat 1": [] });
+  const [activeChat, setActiveChat] = useState("Chat 1");
   const [message, setMessage] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
 
-  // Send message in the active chat
   const sendMessage = () => {
-      if (message.trim()) {
-        const userMessage = { text: message, sender: "user" };
-  
+    if (message.trim()) {
+      const userMessage = { text: message, sender: "user" };
+
+      setChats((prevChats) => {
+        const updatedChat = [...prevChats[activeChat], userMessage];
+        return { ...prevChats, [activeChat]: updatedChat };
+      });
+
+      setTimeout(() => {
+        const botResponse = { text: "Hello, how can I help you?", sender: "bot" };
         setChats((prevChats) => {
-          const updatedChat = [...prevChats[activeChat], userMessage];
-  
+          const updatedChat = [...prevChats[activeChat], botResponse];
           return { ...prevChats, [activeChat]: updatedChat };
         });
-  
-        setTimeout(() => {
-          const botResponse = { text: "Hello, how can I help you?", sender: "bot" };
-          setChats((prevChats) => {
-            const updatedChat = [...prevChats[activeChat], botResponse];
-            return { ...prevChats, [activeChat]: updatedChat };
-          });
-        }, 500); // Simulate bot response delay
-  
-        setMessage("");
-        setEditingIndex(null);
-      }
+      }, 500);
+
+      setMessage("");
+      setEditingIndex(null);
     }
+  };
 
   const handleDeleteMessage = (index) => {
     setChats((prevChats) => ({
@@ -45,30 +42,17 @@ const ChatBox = () => {
     setEditingIndex(index);
   };
 
-  const handleNewChat = () => {
-    const newChatName = `Chat ${Object.keys(chats).length + 1}`;
-    setChats({ ...chats, [newChatName]: [] }); // Add new chat with empty messages
-    setActiveChat(newChatName); // Switch to new chat
-  };
-
   return (
-    <>
-      {/* Pass chat history and activeChat setter to Sidebar */}
-      <Sidebar chats={Object.keys(chats)} activeChat={activeChat} setActiveChat={setActiveChat} handleNewChat={handleNewChat} />
-
-      <div className="main-div">
+    <div className="chat-box-container">
+      <div className="chat-box-wrapper">
         {chats[activeChat].length === 0 && (
-        <div className="message-container">
-
-          <span className="display-text">How can I help with?</span>
-        </div>
+          <div className="chat-placeholder">How can I help you?</div>
         )}
 
-        <div className="chat-box">
-          <div className="chat-history">
-            {chats[activeChat].map((msg, index) => (
-               <div key={index} className={`chat-message-container ${msg.sender}`}>
-               <div className={`chat-message ${msg.sender}`}>
+        <div className="chat-history">
+          {chats[activeChat].map((msg, index) => (
+            <div key={index} className={`chat-message-container ${msg.sender}`}>
+              <div className={`chat-message ${msg.sender}`}>
                 <p>{msg.text}</p>
                 <div className="message-actions">
                   <span onClick={() => handleEditMessage(index)} className="edit-icon">
@@ -79,24 +63,24 @@ const ChatBox = () => {
                   </span>
                 </div>
               </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="chat-input">
-            <input
-              type="text"
-              placeholder="Message ChatBox"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <button className="send-btn" onClick={sendMessage}>
-            <Send fontSize="medium" />
-            </button>
-          </div>
+            </div>
+          ))}
         </div>
+
+        <div className="chat-input">
+          <input
+            type="text"
+            placeholder="Type a message..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </div>
+
+        <button className="chat-box-submit-btn" onClick={sendMessage}>
+          Send Message
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 
