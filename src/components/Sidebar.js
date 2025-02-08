@@ -3,17 +3,18 @@ import '../styles/Sidebar.css';
 import hamburgerIcon from '../images/Hamburger.png';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuIcon from "@mui/icons-material/Menu";
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'; // Updated Logout Icon
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconButton } from "@mui/material";
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+import { Chat, Add } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ chats, activeChat, setActiveChat, handleNewChat }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [chats, setChats] = useState(["Chat 1", "Chat 2", "Chat 3"]);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);  // New state to manage login status
-  const navigate = useNavigate(); // Initialize navigate function
+ 
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // If the user is logged out, clear sidebar state
@@ -39,35 +40,34 @@ const Sidebar = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleNewChat = () => {
-    const newChatName = `Chat ${chats.length + 1}`;
-    setChats([...chats, newChatName]);
-  };
+
 
   const handleLogout = () => {
     console.log("User logged out");
-    setIsLoggedIn(false);  // Update the login status to logged out
-    localStorage.removeItem('sidebarState');  // Clear sidebar state from localStorage
-    navigate('/blank');  // Redirect to blank page
+    setIsLoggedIn(false);
+    localStorage.removeItem('sidebarState');
+    navigate('/');
   };
 
   const toggleMode = () => {
     setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode", !isDarkMode); // Toggle dark mode class on body
+    document.body.classList.toggle("dark-mode", !isDarkMode);
   };
 
   // If user is logged out, don't render the sidebar
-  if (!isLoggedIn) return null;  // Return null so that Sidebar doesn't render when logged out
+  if (!isLoggedIn) return null;
 
   return (
     <div>
       {/* Hamburger Icon - Visible when sidebar is closed */}
+      <div className={`hamburger-icon ${isDarkMode ? 'dark-mode' : ''}`}>
       {!isOpen && (
         <IconButton onClick={toggleSidebar}>
-          <MenuIcon className="hamburger-icon" />
+          <MenuIcon className={`hamburger-icon ${isDarkMode ? 'dark-mode' : ''}`} />
         </IconButton>
+        
       )}
-
+</div>
       {/* Sidebar Menu */}
       <div className={`sidebar ${isOpen ? 'open' : 'closed'} ${isDarkMode ? 'dark-mode' : ''}`}>
         {/* Close Icon inside Sidebar */}
@@ -85,21 +85,25 @@ const Sidebar = () => {
         <input 
           type="text" 
           placeholder="Search chats..." 
-          className="search-bar" 
+          className={`search-bar ${isDarkMode ? 'dark-mode' : ''}`}
           value={searchTerm} 
           onChange={handleSearch} 
         />
 
         {/* New Chat Button */}
-        <button className="mode-toggle-btn" onClick={handleNewChat}>➕ New Chat</button>
+        <button className="mode-toggle-btn" onClick={handleNewChat}><Add fontSize="medium" className='addbutton' /> New Chat</button>
 
         {/* Chat List */}
         <ul className="chat-list">
           {chats
             .filter(chat => chat.toLowerCase().includes(searchTerm.toLowerCase()))
             .map((chat, index) => (
-              <li key={index} className="chat-item">
-                🗨️ {chat}
+              <li key={index} className={`chat-item ${chat === activeChat ? "active" : ""}`}
+              onClick={() => setActiveChat(chat)}
+              >
+                 
+                    <Chat fontSize="small" />
+                  {chat}
               </li>
             ))}
         </ul>

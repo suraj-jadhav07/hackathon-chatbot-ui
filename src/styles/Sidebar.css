@@ -26,8 +26,12 @@
   cursor: pointer;
   position: absolute;
   top: 0px;
-  left: 20px;
+  left: 10px;
   z-index: 1000;
+  color: black;
+}
+.hamburger-icon .dark-mode{
+  color: white !important;
 }
 .arrow-icon{
   margin-right: 15rem;
@@ -62,13 +66,13 @@
   left: -300px; /* Hidden initially */
   width: 260px;
   height: 100%;
-  background-color: var(--sidebar-bg-color-light);
+  /* background-color: var(--sidebar-bg-color-light); */
   color: var(--text-color-light);
   padding: 20px;
   transition: left 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 18px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar.open {
@@ -110,8 +114,18 @@
 }
 
 .chat-item:hover {
-  background-color: var(--hover-bg-color-light);
-  transform: scale(1.02);
+  background-color: var(--logout-btn-hover-light);
+  color: #fff;
+}
+
+.chat-item.active{
+
+  background-color: var(  --button-bg-color-light);
+  color: #fff;
+  &:hover{
+    background-color: var(--logout-btn-hover-light);
+  }
+  
 }
 
 /* Scrollbar Customization */
@@ -136,11 +150,12 @@
 /* Dark Mode */
 body.dark-mode {
   background-color: var(--background-color-dark);
+  background:url(../images/pink.jpg) ;
   color: var(--text-color-dark);
 }
 
 .sidebar.dark-mode {
-  background-color: var( --mode-btn-bg-dark);
+  background-color: #aaaaaa85;
   color: var(--text-color-dark);
 }
 
@@ -151,13 +166,12 @@ body.dark-mode {
 
 /* Logout Button */
 .logout-btn {
-  width: 90%;
+  width: 100%;
   padding: 12px;
-  background-color: var(  --button-bg-color-light
-  );
+  background-color: var(  --button-bg-color-light);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
   margin: 30px auto;
@@ -167,6 +181,11 @@ body.dark-mode {
   gap: 10px;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s;
+}
+
+.addbutton{
+  align-items: center;
+  justify-content: center;
 }
 
 .logout-btn:hover {
@@ -189,9 +208,9 @@ body.dark-mode {
 
 /* Mode Toggle Button */
 .mode-toggle-btn {
-  background-color: var(--mode-btn-bg-light);
+  background-color:white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   border-radius: 25px;
   cursor: pointer;
@@ -200,8 +219,9 @@ body.dark-mode {
 }
 
 .mode-toggle-btn:hover {
-  background-color: var(--mode-btn-hover-light);
+  background-color: #f7f9fc;
   transform: scale(1.05);
+  box-shadow: 8px 11px 16px #02413a;
 }
 
 /* Dark Mode for Mode Button */
@@ -216,7 +236,7 @@ body.dark-mode {
 
 
 .search-bar {
-  background: #059177;
+  background: white;
   /* background-color: var(--mode-btn-bg-light); */
   border: none;
   padding: 14px 10px !important;
@@ -228,15 +248,19 @@ body.dark-mode {
 }
 
 .search-bar:hover {
-  background-color: #e91e63;
+  background-color: #f7f9fc;
   transform: scale(1.05);
+  box-shadow: 8px 11px 16px #02413a;
 }
 
 /* Dark Mode for Mode Button */
 .search-bar.dark-mode {
-  background-color:#FFBF00	;
+  background-color: #e91e63 !important;
 }
 
 .search-bar.dark-mode:hover {
   background-color: var(--mode-btn-hover-dark);
+}
+.search-bar::placeholder {
+  color: black;
 }
