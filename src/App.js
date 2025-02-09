@@ -14,6 +14,7 @@ import Layout from './components/Layout';
 import React, { useState } from 'react';
 import ExamHistory from './components/ExamHistory';
 import StudentExam from './components/StudentExam';
+import TeacherMailBox from './components/TeacherMailBox';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/chatbox" element={<ChatBox />} />
           <Route path="/layout" element={<Layout />} />
 
+
         {/* Protected Routes - Wrapped in Layout */}
         <Route path="/dashboard/*" element={<Layout />}>
           <Route index element={<Dashboard />} />
@@ -42,6 +44,8 @@ function App() {
           <Route path="chatbox" element={<ChatBox />} />
           <Route path="examHistory" element={<ExamHistory />} />
           <Route path="studentExam" element={<StudentExam />} />
+          <Route path="mailbox" element={<TeacherMailBox />} />
+
         </Route>
 
         </Routes>

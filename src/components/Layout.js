@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt  } from "react-icons/fa";
+import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaEnvelope  } from "react-icons/fa";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "../styles/Layout.css";
 
@@ -37,6 +37,11 @@ const Layout = () => {
           <li>
             <NavLink to="/dashboard/examHistory" className={({ isActive }) => (isActive ? "active" : "")}>
               <FaBookOpen className="icon" /> Exam History
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/mailbox" className={({ isActive }) => (isActive ? "active" : "")}>
+              <FaEnvelope className="icon" /> Teacher Mailbox
             </NavLink>
           </li>
         </ul>

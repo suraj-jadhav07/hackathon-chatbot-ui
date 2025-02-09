@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styles/Otp.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/Common.css";
-// import axios from "axios";
+import { API_CONST } from "../core/constants";
+import axios from "axios";
 
 const Otp = () => {
 
@@ -18,20 +19,26 @@ const Otp = () => {
         console.log('Entered OTP=>', otp);
         const validateForm = validateOtp(otp);
         if(validateForm) {
-            setTimeout(() => {
+            let email = localStorage.getItem("email");
+            axios
+            .post(API_CONST.VERIFY_OTP, {
+                otp: Number(otp),
+                email
+            })
+            .then((response) => {
+                console.log("OPT Verification successful:", response.data);
+                setTimeout(() => {
+                    setLoading(false);
+                    setShowSignIn(true);
+                    navigate("/chatbox");
+                    localStorage.removeItem("email");
+                    setError("");
+                }, 2000);
+            })
+            .catch((error) => {
+                console.error("OTP failed:", error.response?.data || error.message);
                 setLoading(false);
-                setShowSignIn(true);
-                setError("");
-            }, 2000);
-
-            // axios
-            // .post("")
-            // .then((response) => {
-            //     console.log("response =>", response);
-            // })
-            // .catch((error) => {
-            //     console.log("error=>", error);
-            // });
+            });
 
 
         } else {

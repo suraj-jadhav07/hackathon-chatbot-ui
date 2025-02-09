@@ -1,0 +1,112 @@
+/* Container */
+.mailbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8fafc;
+  }
+  
+  /* Card */
+  .mailbox-card {
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* Title & Subtitle */
+  .mailbox-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a202c;
+    margin-bottom: 5px;
+  }
+  
+  .mailbox-subtitle {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 15px;
+  }
+  
+  /* Header */
+  .mailbox-header {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a202c;
+    margin-bottom: 10px;
+  }
+  
+  .mailbox-icon {
+    margin-right: 10px;
+    color: #4a90e2;
+    font-size: 20px;
+  }
+  
+  /* Message List */
+  .mailbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Message Item */
+  .mailbox-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .mailbox-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  
+  .mailbox-email {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a202c;
+  }
+  
+  .mailbox-subject {
+    font-size: 13px;
+    color: #4a5568;
+  }
+  
+  .mailbox-date {
+    font-size: 12px;
+    color: #718096;
+  }
+  
+  /* Button */
+  .mailbox-button {
+    display: flex;
+    align-items: center;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+
+  }
+  
+  .mailbox-button:hover {
+    background-color: #2b6cb0;
+  }
+  
+  .button-icon {
+    margin-right: 5px;
+  }
+  
