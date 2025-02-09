@@ -1,0 +1,43 @@
+.dashboard-container {
+    padding: 20px;
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.stat-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #2c3e50;
+}
+
+.stat-box h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.stat-box p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}

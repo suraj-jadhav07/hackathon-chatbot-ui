@@ -55,11 +55,16 @@
     transform: translateX(50%);
 }
 
+.otp-button:hover {
+    background: #b62174;;
+}
+
 .otp-error.show {
     visibility: visible;
     color: red;
     position: absolute;
     margin-left: -136px;
+    font-weight: bold;
 }
 
 .otp-error {
@@ -67,6 +72,6 @@
 }
 
 .otp-verfication-heading.success {
-    color: green;
+    color: #00ff00;
 }
 

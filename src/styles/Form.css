@@ -20,6 +20,7 @@
     font-size: 24px;
     margin-bottom: 20px;
     text-align: left;
+    color: white;
 }
 
 .input-label {
@@ -63,7 +64,7 @@ input[type="text"] {
 }
 
 .submit-button:hover {
-    background-color: #333;
+    background-color: #b62174;
 }
 
 .link-forgot-password {
@@ -125,6 +126,7 @@ a:hover {
     margin: 2px;
     color: #ff0000eb;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .to-signup-signin {
