@@ -1,7 +1,107 @@
-import React from "react"
 
-export default function ExamHistory () {
+import React, { useEffect, useState } from "react";
+import "../styles/ExamHistory.css";
+import "../styles/Dashboard.css";
+import { FaBars, FaTimes } from "react-icons/fa";
+
+const ExamHistory = () => {
+    //   const [exam, setExam] = useState(null);
+    const [isOpen, setIsOpen] = useState(false); // State to manage popup visibility
+    const exam = {
+        examId: 1, 
+        topic: "Photosynthesis", 
+        date: "2/9/2025", 
+    };
+
+    const questions = [
+        "What is the main purpose of photosynthesis?",
+        "Which organelle is responsible for photosynthesis?",
+        "What gas is absorbed during photosynthesis?",
+        "What is the role of chlorophyll?",
+        "How does light intensity affect photosynthesis?",
+    ];
+    //   useEffect(() => {
+    //     // Simulated API Call
+    //     fetch("https://api.example.com/exam-details") // Replace with actual API endpoint
+    //       .then((response) => response.json())
+    //       .then((data) => setExam(data))
+    //       .catch((error) => console.error("Error fetching data:", error));
+    //   }, []);
+
     return (
-        <h1>Exam history page</h1>
+
+        <div className="history-container">
+            <h2 className="history-title">Exam history page</h2>
+
+            <div className="history-stats">
+
+                {/* {Card 1} */}
+
+                <div className="history-box">
+                    <FaBars className="history-icon" />
+                    <div>
+                        <h3>{"Exam 1"}</h3>
+                        <p>
+                            <strong className="lable">Topic:</strong>
+                            <span className="sub-label">{exam.topic}</span>
+                        </p>
+                        <p>
+                            <strong className="lable">Date:</strong>
+                            <span className="sub-label">{exam.date}</span>
+                        </p>
+                    </div>
+                </div>
+
+                {/* {Card 2} */}
+
+                <div className="history-box">
+                    <FaBars className="history-icon" />
+                    <div>
+                        <h3>{"Exam 2"}</h3>
+                        <p>
+                            <strong className="lable">Topic:</strong>
+                            <span className="sub-label">{exam.topic}</span>
+                        </p>
+                        <p>
+                            <strong className="lable">Date:</strong>
+                            <span className="sub-label">{exam.date}</span>
+                        </p>
+                    </div>
+                </div>
+
+                {/* {Card 3} */}
+
+                <div className={`history-box ${isOpen ? "blurred" : ""}`} onClick={() => setIsOpen(true)}>
+                    <FaBars className="history-icon" />
+                    <div>
+                    <h3>{"Exam 3"}</h3>
+                        <p>
+                            <strong className="lable">Topic:</strong>
+                            <span className="sub-label">{exam.topic}</span>
+                        </p>
+                        <p>
+                            <strong className="lable">Date:</strong>
+                            <span className="sub-label">{exam.date}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {isOpen && (
+                <div className="popup-overlay">
+                    <div className="popup-content">
+                        <FaTimes className="close-icon" onClick={() => setIsOpen(false)} />
+                        <h3>Exam Questions</h3>
+                        <ul>
+                            {questions.map((question, index) => (
+                                <li key={index}>{question}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </div>
     )
-};
+}
+
+export default ExamHistory;
