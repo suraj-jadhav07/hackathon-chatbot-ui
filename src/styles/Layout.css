@@ -1,6 +1,6 @@
 .layout-container {
     display: flex;
-    height: 100vh;
+    height: 111vh;
 }
 
 .layout-sidebar {
@@ -10,6 +10,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    
 }
 
 .layout-logo {
@@ -64,7 +65,7 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: auto; /* Pushes it to the bottom */
+    margin-top: 30vh;
   }
   
   .logout-button:hover {

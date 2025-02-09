@@ -57,6 +57,7 @@ export default function StudentExam() {
               value={answers[question.name]}
               onChange={handleChange}
               className={errors[question.name] ? "error" : ""}
+              placeholder="Type your answer here.."
             ></textarea>
             {errors[question.name] && <p className="error-text">{errors[question.name]}</p>}
           </div>
