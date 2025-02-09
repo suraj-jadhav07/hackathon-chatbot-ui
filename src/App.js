@@ -13,6 +13,7 @@ import CreateExam from './components/CreateExam';
 import Layout from './components/Layout';
 import React, { useState } from 'react';
 import ExamHistory from './components/ExamHistory';
+import StudentExam from './components/StudentExam';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="createExam" element={<CreateExam />} />
           <Route path="chatbox" element={<ChatBox />} />
           <Route path="examHistory" element={<ExamHistory />} />
+          <Route path="studentExam" element={<StudentExam />} />
         </Route>
 
         </Routes>

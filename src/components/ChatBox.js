@@ -7,6 +7,7 @@ const ChatBox = () => {
   const [activeChat, setActiveChat] = useState("Chat 1");
   const [message, setMessage] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
+  const [isEmailEnabled, setIsEmailEnabled] = useState(false); // Send Email button state
 
   const sendMessage = () => {
     if (message.trim()) {
@@ -23,6 +24,8 @@ const ChatBox = () => {
           const updatedChat = [...prevChats[activeChat], botResponse];
           return { ...prevChats, [activeChat]: updatedChat };
         });
+
+        setIsEmailEnabled(true); // Enable "Send Email" when bot responds
       }, 500);
 
       setMessage("");
@@ -51,7 +54,10 @@ const ChatBox = () => {
 
         <div className="chat-history">
           {chats[activeChat].map((msg, index) => (
-            <div key={index} className={`chat-message-container ${msg.sender}`}>
+            <div
+              key={index}
+              className={`chat-message-container ${msg.sender === "user" ? "user-align" : "bot-align"}`}
+            >
               <div className={`chat-message ${msg.sender}`}>
                 <p>{msg.text}</p>
                 <div className="message-actions">
@@ -67,18 +73,26 @@ const ChatBox = () => {
           ))}
         </div>
 
-        <div className="chat-input">
+        {/* Input field */}
+        <div className="chat-input-container">
           <input
             type="text"
             placeholder="Type a message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           />
         </div>
 
-        <button className="chat-box-submit-btn" onClick={sendMessage}>
-          Send Message
-        </button>
+        {/* Buttons in a separate row */}
+        <div className="chat-button-container">
+          <button className="chat-box-submit-btn" onClick={sendMessage}>
+            Send Message
+          </button>
+          <button className="chat-box-email-btn" disabled={!isEmailEnabled}>
+            Send Email
+          </button>
+        </div>
       </div>
     </div>
   );
