@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import "../styles/StudentManagement.css";
 import axios from "axios";
+import { API_CONST } from "../core/constants";
 
 const StudentManagement = () => {
+  // const [students, setStudents] = useState([]);
   const [students, setStudents] = useState([
-    { id: 1, firstName: "John", lastName: "Doe", email: "john@example.com" },
-    { id: 2, firstName: "Jane", lastName: "Smith", email: "jane@example.com" }
+    { id: 1, first_name: "John", last_name: "Doe", email: "john@example.com" },
+    { id: 2, first_name: "Jane", last_name: "Smith", email: "jane@example.com" },
+    { id: 3, first_name: "User1", last_name: "1", email: "user1@example.com" },
+    { id: 4, first_name: "User2", last_name: "2", email: "user2@example.com" },
+    { id: 5, first_name: "User3", last_name: "3", email: "user3@example.com" }
   ]);
+
+
   const [showForm, setShowForm] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -33,9 +40,15 @@ const StudentManagement = () => {
       setLoading(false);
     } else {
       axios
-      .post(url, {})
+      .post(API_CONST.ADD_STUDENT, {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email
+      })
       .then((response) => {
-
+        console.log("student added successfully:", response.data);
+        setFormData({ firstName: "", lastName: "", email: "" });
+        getAllStudents();
       })
       .catch((error) => {
         console.error("Add student failed:", error.response?.data || error.message);        
@@ -76,25 +89,47 @@ const StudentManagement = () => {
 
   const deleteStudent = (id) => {
     axios
-    .delete()
+    .delete(`${API_CONST.DELETE_STUDENT}/${id}`)
     .then((response) => {
-
+      console.log("get Students list:", response.data);
+      getAllStudents();
     })
-    .catch((error) => {
-
+    .catch(() => {
+      setLoading(false);
     })
-    setStudents(students.filter(student => student.id !== id));
+    // setStudents(students.filter(student => student.id !== id));
+  };
+
+  const updateStudent = (id, formData) => {
+    console.log("formData", id, formData);
+    axios
+    .put(`${API_CONST.EDIT_STUDENT}/${id}`, formData)
+    .then((response) => {
+      getAllStudents();
+      setFormData({ firstName: "", lastName: "", email: "" });
+    })
+    .catch(() => {
+      setLoading(false);
+    })  
   };
 
   const getAllStudents = () => {
     axios
-    .get()
+    .get(API_CONST.GET_STUDENT)
     .then((response) => {
-
+      console.log("get students:", response.data);
+      setStudents(response.data);
     })
     .catch((error) => {
-
+      setLoading(false);
     })
+  }
+
+  const handleEdit = (id, student) => {
+    console.log("id", id, student);
+    setShowForm(true);
+    getAllStudents();
+    setFormData({ firstName: student.first_name, lastName: student.last_name, email: student.email });
   }
 
   return (
@@ -128,6 +163,14 @@ const StudentManagement = () => {
               disabled={loading}
               >{loading ? <span className="loader"></span>:"Add Student"}
               </button>
+
+              <button 
+              className="student-management-save-btn" 
+              onClick={updateStudent} 
+              disabled={loading}
+              >{loading ? <span className="loader"></span>:"Update Student"}
+              </button>
+
             <button className="student-management-cancel-btn" onClick={onCancelAddStudents} disabled={loading}>Cancel</button>
           </div>
         </div>
@@ -145,11 +188,11 @@ const StudentManagement = () => {
         <tbody>
           {students.map(student => (
             <tr key={student.id}>
-              <td>{student.firstName}</td>
-              <td>{student.lastName}</td>
+              <td>{student.first_name}</td>
+              <td>{student.last_name}</td>
               <td>{student.email}</td>
               <td className="student-management-actions">
-                {/* <button className="student-management-edit-btn"><FaEdit /></button> */}
+                <button className="student-management-edit-btn" onClick={() => handleEdit(student.id, student)}><FaEdit /></button>
                 <button className="student-management-delete-btn" onClick={() => deleteStudent(student.id)}><FaTrash /></button>
               </td>
             </tr>
