@@ -34,6 +34,7 @@ const Signup = () => {
             })
             .then((response) => {
                 console.log("Register successful:", response.data);
+                localStorage.setItem("email", formData.email);
                 setLoading(false);
                 setTimeout(() => {
                     setLoading(false);

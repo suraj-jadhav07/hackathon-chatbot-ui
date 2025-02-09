@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "../styles/Form.css";
 // import fbLogo from "../images/facebook.svg";
 // import googleLogo from "../images/google.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_CONST } from "../core/constants";
 
 
 const Login = () => {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({ email: "", password: "" });
@@ -54,7 +54,7 @@ const Login = () => {
               email,
               password,
             });
-      
+            navigate("/chatbox");
             console.log("Login successful:", response.data);
           } catch (err) {
             console.error("Login failed:", err.response?.data || err.message);
