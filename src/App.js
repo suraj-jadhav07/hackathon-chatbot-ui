@@ -34,6 +34,7 @@ function App() {
           <Route path="/otp" element={<OTP />} />
           <Route path="/chatbox" element={<ChatBox />} />
           <Route path="/layout" element={<Layout />} />
+          <Route path="studentExam" element={<StudentExam />} />
 
 
         {/* Protected Routes - Wrapped in Layout */}
@@ -43,7 +44,6 @@ function App() {
           <Route path="createExam" element={<CreateExam />} />
           <Route path="chatbox" element={<ChatBox />} />
           <Route path="examHistory" element={<ExamHistory />} />
-          <Route path="studentExam" element={<StudentExam />} />
           <Route path="mailbox" element={<TeacherMailBox />} />
 
         </Route>
