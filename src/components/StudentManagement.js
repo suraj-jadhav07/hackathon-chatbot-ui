@@ -5,21 +5,21 @@ import axios from "axios";
 import { API_CONST } from "../core/constants";
 
 const StudentManagement = () => {
-  // const [students, setStudents] = useState([]);
-  const [students, setStudents] = useState([
-    { id: 1, first_name: "John", last_name: "Doe", email: "john@example.com" },
-    { id: 2, first_name: "Jane", last_name: "Smith", email: "jane@example.com" },
-    { id: 3, first_name: "User1", last_name: "1", email: "user1@example.com" },
-    { id: 4, first_name: "User2", last_name: "2", email: "user2@example.com" },
-    { id: 5, first_name: "User3", last_name: "3", email: "user3@example.com" }
-  ]);
+  const [students, setStudents] = useState([]);
+  // const [students, setStudents] = useState([
+  //   { id: 1, first_name: "John", last_name: "Doe", email: "john@example.com" },
+  //   { id: 2, first_name: "Jane", last_name: "Smith", email: "jane@example.com" },
+  //   { id: 3, first_name: "User1", last_name: "1", email: "user1@example.com" },
+  //   { id: 4, first_name: "User2", last_name: "2", email: "user2@example.com" },
+  //   { id: 5, first_name: "User3", last_name: "3", email: "user3@example.com" }
+  // ]);
 
 
   const [showForm, setShowForm] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "" });
-
+  const [isUpdateStudent, setIsUpdateStudent] = useState(false);
 
   useEffect(() => {
     getAllStudents();
@@ -65,6 +65,7 @@ const StudentManagement = () => {
     setShowForm(false);
     setFormData({ firstName: "", lastName: "", email: "" });
     setErrors({});
+    setIsUpdateStudent(false);
   }
 
   const validateStudentForm = (formData) => {
@@ -100,17 +101,28 @@ const StudentManagement = () => {
     // setStudents(students.filter(student => student.id !== id));
   };
 
-  const updateStudent = (id, formData) => {
-    console.log("formData", id, formData);
+  const updateStudent = (formData) => {
+    const validationErrors = validateStudentForm(formData);
+    if (validationErrors && Object.keys(validationErrors).length) {
+      setErrors(validationErrors);
+      setLoading(false);
+    } else {
+    console.log("formData", formData);
     axios
-    .put(`${API_CONST.EDIT_STUDENT}/${id}`, formData)
+    .put(`${API_CONST.EDIT_STUDENT}/${formData.id}`, { 
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email
+    }
+    )
     .then((response) => {
       getAllStudents();
-      setFormData({ firstName: "", lastName: "", email: "" });
+      setFormData({ id: "", firstName: "", lastName: "", email: "" });
     })
     .catch(() => {
       setLoading(false);
     })  
+  }
   };
 
   const getAllStudents = () => {
@@ -128,8 +140,8 @@ const StudentManagement = () => {
   const handleEdit = (id, student) => {
     console.log("id", id, student);
     setShowForm(true);
-    getAllStudents();
-    setFormData({ firstName: student.first_name, lastName: student.last_name, email: student.email });
+    setIsUpdateStudent(true);
+    setFormData({ id: student.id, firstName: student.first_name, lastName: student.last_name, email: student.email });
   }
 
   return (
@@ -137,7 +149,8 @@ const StudentManagement = () => {
       <div className="student-management-header">
         <h1>Students</h1>
         <p>Manage your student roster</p>
-        <button className="add-student-btn" onClick={() => setShowForm(!showForm)}>
+        <button className="add-student-btn" onClick={() => setShowForm(!showForm)}
+          disabled={isUpdateStudent}>
           <FaPlus /> Add Student
         </button>
       </div>
@@ -145,6 +158,8 @@ const StudentManagement = () => {
       {showForm && (
         <div className="student-form">
           <div className="stmg-form-group">
+           <input type="text" name="id" value={formData.id} hidden readOnly/>
+
             <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
             {errors && errors.firstName && <span className="stmg-error-form">{errors.firstName}</span>}
           </div>
@@ -161,13 +176,15 @@ const StudentManagement = () => {
               className="student-management-save-btn" 
               onClick={addStudent} 
               disabled={loading}
+              hidden={isUpdateStudent}
               >{loading ? <span className="loader"></span>:"Add Student"}
               </button>
 
               <button 
               className="student-management-save-btn" 
-              onClick={updateStudent} 
+              onClick={() => updateStudent(formData)} 
               disabled={loading}
+              hidden={!isUpdateStudent}
               >{loading ? <span className="loader"></span>:"Update Student"}
               </button>
 

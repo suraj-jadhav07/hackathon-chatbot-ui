@@ -90,13 +90,13 @@ const Signup = () => {
                 <h2 className="form-header">Sign up</h2>
                 <form className="form">
                     <label className="input-label">Name</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full name" defaultValue="Jon Snow" />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full name" />
                     {errors && errors.name && <span className="error-form">{errors.name}</span>}
                     <label className="input-label">Email</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" defaultValue="your@email.com" />
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email"/>
                     {errors && errors.email && <span className="error-form">{errors.email}</span>}
                     <label className="input-label">Password</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" defaultValue="••••••" />
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password"/>
                     {errors && errors.password && <span className="error-form">{errors.password}</span>}
                     {/* <label className="checkbox-container">
                         <input type="checkbox" /> I want to receive updates via email.
