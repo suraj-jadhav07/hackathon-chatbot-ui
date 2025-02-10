@@ -6,4 +6,5 @@ export const API_CONST = {
     GET_STUDENT: 'http://127.0.0.1:5000/students',
     DELETE_STUDENT: 'http://127.0.0.1:5000/students',
     EDIT_STUDENT: 'http://127.0.0.1:5000/students',
+    ASK_QUESTIONS: 'http://127.0.0.1:8000/ask'
 }

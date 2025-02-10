@@ -80,16 +80,16 @@
   margin-top: 5px;
 }
 
-.edit-icon, .delete-icon {
+.edit-icon.user, .delete-icon.user {
   cursor: pointer;
   color: #6c757d;
 }
 
-.edit-icon:hover {
+.edit-icon.user:hover {
   color: #dc3545;
 }
 
-.delete-icon:hover {
+.delete-icon.user:hover {
   color: #dc3545;
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../styles/ChatBox.css";
 import { Edit, Delete } from "@mui/icons-material";
+import axios from "axios";
+import { API_CONST } from "../core/constants";
 
 const ChatBox = () => {
   const [chats, setChats] = useState({ "Chat 1": [] });
@@ -17,19 +19,25 @@ const ChatBox = () => {
         const updatedChat = [...prevChats[activeChat], userMessage];
         return { ...prevChats, [activeChat]: updatedChat };
       });
-
-      setTimeout(() => {
-        const botResponse = { text: "Hello, how can I help you?", sender: "bot" };
-        setChats((prevChats) => {
-          const updatedChat = [...prevChats[activeChat], botResponse];
-          return { ...prevChats, [activeChat]: updatedChat };
-        });
-
-        setIsEmailEnabled(true); // Enable "Send Email" when bot responds
-      }, 500);
-
-      setMessage("");
-      setEditingIndex(null);
+          axios
+          .post(API_CONST.ASK_QUESTIONS, {
+            question:message
+          })
+          .then((response) => {
+            console.log(response.data);
+         
+              const botResponse = { text: response.data.answer, sender: "bot" };
+              setChats((prevChats) => {
+                const updatedChat = [...prevChats[activeChat], botResponse];
+                return { ...prevChats, [activeChat]: updatedChat };
+              });
+              setIsEmailEnabled(true); // Enable "Send Email" when bot responds
+              setMessage("");
+              setEditingIndex(null);
+          })
+          .catch((error) => {
+            console.error("Questions generation failed", error.response?.data || error.message);        
+          });
     }
   };
 
@@ -61,12 +69,13 @@ const ChatBox = () => {
               <div className={`chat-message ${msg.sender}`}>
                 <p>{msg.text}</p>
                 <div className="message-actions">
+                  {msg.sender === "user" ? <>
                   <span onClick={() => handleEditMessage(index)} className="edit-icon">
                     <Edit fontSize="small" />
                   </span>
                   <span onClick={() => handleDeleteMessage(index)} className="delete-icon">
                     <Delete fontSize="small" />
-                  </span>
+                  </span></> :""}
                 </div>
               </div>
             </div>
