@@ -1,9 +1,11 @@
 /* Container */
 .mailbox-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; */
+    padding: 20px;
+    font-family: "Arial", sans-serif;
   }
   
   /* Card */
@@ -14,24 +16,29 @@
     padding: 20px;
     width: 100%;
     max-width: 500px;
+    margin-left: 20rem;
   }
-  
+  .mailbox-header{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 3rem;
+  }
+
   /* Title & Subtitle */
-  .mailbox-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #1a202c;
+
+  .mailbox-container h1 {
+    font-size: 28px;
     margin-bottom: 5px;
   }
   
-  .mailbox-subtitle {
-    font-size: 14px;
-    color: #4a5568;
+  .mailbox-container p {
+    color: #777;
     margin-bottom: 15px;
   }
   
   /* Header */
-  .mailbox-header {
+  .mail-header {
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -62,6 +69,10 @@
     background-color: #f9fafb;
     border-radius: 8px;
     border: 1px solid #e2e8f0;
+  }
+  .mailbox-item:hover{
+    transform: scale(1.02);
+    cursor: pointer;
   }
   
   .mailbox-info {

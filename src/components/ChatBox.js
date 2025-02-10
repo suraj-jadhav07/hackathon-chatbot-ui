@@ -55,6 +55,10 @@ const ChatBox = () => {
 
   return (
     <div className="chat-box-container">
+      <div className="chat-box-header">
+        <h1>Arieo Iris Bot</h1>
+        <p>Transforming Assessments with AI</p>
+      </div>
       <div className="chat-box-wrapper">
         {chats[activeChat].length === 0 && (
           <div className="chat-placeholder">How can I help you?</div>

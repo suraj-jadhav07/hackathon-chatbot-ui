@@ -41,7 +41,7 @@
 //     <li>
 //       <div className="icon-wrapper"><FaHistory /></div> Exam History
 //     </li>
-    
+
 //     {/* <li>
 //       <div className="icon-wrapper"><FaUser /></div> Profile
 //     </li> */}
@@ -51,7 +51,7 @@
 //     <li>
 //       <div className="icon-wrapper"><FaSignInAlt /></div> Log Out
 //     </li>
-  
+
 //   </ul>
 
 
@@ -108,33 +108,33 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h2 className="dashboard-title">Dashboard</h2>
-
+      <h1 className="dashboard-title">Dashboard</h1>
+      <p>Welcome Teacher</p>
       <div className="dashboard-stats">
         {/* Students Count Box */}
         <div className="stat-box">
           <FaUserGraduate className="stat-icon" />
-          <div>
-            <h3>{stats.students}</h3>
-            <p>Students</p>
+          <div className="dashboard-card">
+            <h3>{stats.students} Students</h3>
+            <p>View and manage your student roaster</p>
           </div>
         </div>
 
         {/* Created Exams Box */}
-        <div className="stat-box">
+        {/* <div className="stat-box">
           <FaBookOpen className="stat-icon" />
-          <div>
-            <h3>{stats.createdExams}</h3>
-            <p>Created Exams</p>
+          <div className="dashboard-card">
+            <h3>Create Exams</h3>
+            <p>Design and publish new exams</p>
           </div>
-        </div>
+        </div> */}
 
         {/* Exam History Box */}
         <div className="stat-box">
           <FaHistory className="stat-icon" />
-          <div>
-            <h3>{stats.examHistory}</h3>
-            <p>Exam History</p>
+          <div className="dashboard-card">
+            <h3>{stats.examHistory} Exam History</h3>
+            <p>Review past exam results and analytics</p>
           </div>
         </div>
       </div>

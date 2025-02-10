@@ -2,15 +2,15 @@
 import React, { useEffect, useState } from "react";
 import "../styles/ExamHistory.css";
 import "../styles/Dashboard.css";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {FaTimes } from "react-icons/fa";
 
 const ExamHistory = () => {
     //   const [exam, setExam] = useState(null);
-    const [isOpen, setIsOpen] = useState(false); // State to manage popup visibility
+    const [isOpen, setIsOpen] = useState(false);
     const exam = {
-        examId: 1, 
-        topic: "Photosynthesis", 
-        date: "2/9/2025", 
+        examId: 1,
+        topic: "Photosynthesis",
+        date: "2/9/2025",
     };
 
     const questions = [
@@ -31,14 +31,15 @@ const ExamHistory = () => {
     return (
 
         <div className="history-container">
-            <h2 className="history-title">Exam history page</h2>
-
-            <div className="history-stats">
+            <h1>Exam Records</h1>
+            <p>
+                Previous exam question list
+            </p>
+            <div className="history-cards">
 
                 {/* {Card 1} */}
 
-                <div className="history-box">
-                    <FaBars className="history-icon" />
+                <div className={`history-box ${isOpen ? "blurred" : ""}`} onClick={() => setIsOpen(true)}>
                     <div>
                         <h3>{"Exam 1"}</h3>
                         <p>
@@ -54,8 +55,7 @@ const ExamHistory = () => {
 
                 {/* {Card 2} */}
 
-                <div className="history-box">
-                    <FaBars className="history-icon" />
+                <div className={`history-box ${isOpen ? "blurred" : ""}`} onClick={() => setIsOpen(true)}>
                     <div>
                         <h3>{"Exam 2"}</h3>
                         <p>
@@ -72,9 +72,8 @@ const ExamHistory = () => {
                 {/* {Card 3} */}
 
                 <div className={`history-box ${isOpen ? "blurred" : ""}`} onClick={() => setIsOpen(true)}>
-                    <FaBars className="history-icon" />
                     <div>
-                    <h3>{"Exam 3"}</h3>
+                        <h3>{"Exam 3"}</h3>
                         <p>
                             <strong className="lable">Topic:</strong>
                             <span className="sub-label">{exam.topic}</span>

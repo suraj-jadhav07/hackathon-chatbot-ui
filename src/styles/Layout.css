@@ -1,6 +1,7 @@
 .layout-container {
     display: flex;
-    height: 111vh;
+    height: 100vh;
+    /* position: fixed; */
 }
 
 .layout-sidebar {
@@ -66,6 +67,7 @@
     cursor: pointer;
     border-radius: 5px;
     margin-top: 30vh;
+    gap: 10px;
   }
   
   .logout-button:hover {

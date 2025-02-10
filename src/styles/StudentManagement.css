@@ -13,6 +13,7 @@
 .student-management-header h1 {
     font-size: 28px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .student-management-header p {

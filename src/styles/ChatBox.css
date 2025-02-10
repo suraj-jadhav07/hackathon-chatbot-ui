@@ -2,11 +2,24 @@
 
 /* Center the chat box */
 .chat-box-container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full viewport height */
+  align-items: center; */
+  /* height: 100vh; */
   background-color: #f0f2f5; /* Light background */
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.chat-box-header{
+  margin-bottom: 7rem;
+}
+.chat-box-container h1{
+  font-size: 28px;
+    font-weight: bold;
+}
+.chat-box-container p {
+  color: #777;
 }
 
 /* Chat Box Wrapper */
@@ -20,6 +33,7 @@
   flex-direction: column;
   padding: 20px;
   position: relative;
+  margin-left: 12rem;
 }
 
 /* Chat History */

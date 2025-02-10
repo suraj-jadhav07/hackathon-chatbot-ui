@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaEnvelope  } from "react-icons/fa";
+import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaEnvelope,FaHistory  } from "react-icons/fa";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "../styles/Layout.css";
 
@@ -17,7 +17,7 @@ const Layout = () => {
     <div className="layout-container">
       {/* Sidebar */}
       <aside className="layout-sidebar">
-        <h2 className="layout-logo">TutorBot</h2>
+        <h2 className="layout-logo">Arieo Iris Bot</h2>
         <ul className="layout-menu">
           <li>
             <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -36,7 +36,7 @@ const Layout = () => {
           </li>
           <li>
             <NavLink to="/dashboard/examHistory" className={({ isActive }) => (isActive ? "active" : "")}>
-              <FaBookOpen className="icon" /> Exam History
+              <FaHistory className="icon" /> Exam History
             </NavLink>
           </li>
           <li>

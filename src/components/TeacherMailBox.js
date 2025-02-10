@@ -19,13 +19,14 @@ const TeacherMailbox = () => {
 
   return (
     <div className="mailbox-container">
-      <div className="mailbox-card">
-        <h1 className="mailbox-title">Teacher Mailbox</h1>
+      <div className="mailbox-header">
+      <h1 className="mailbox-title">Teacher Mailbox</h1>
         <p className="mailbox-subtitle">
           Review and check student exam responses
         </p>
-
-        <div className="mailbox-header">
+        </div>
+      <div className="mailbox-card">
+        <div className="mail-header">
           <FaEnvelope className="mailbox-icon" />
           <span>Inbox</span>
         </div>

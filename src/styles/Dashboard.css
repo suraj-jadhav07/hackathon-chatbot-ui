@@ -1,17 +1,24 @@
 .dashboard-container {
     padding: 20px;
+    font-family: "Arial", sans-serif;
 }
 
-.dashboard-title {
-    text-align: center;
-    font-size: 24px;
+
+.dashboard-container h1 {
+    font-size: 28px;
     margin-bottom: 20px;
 }
 
+.dashboard-card {
+    margin-left: 10px;
+}
 .dashboard-stats {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    width: 80%;
+    margin-left: 7rem;
+    margin-top: 5rem;
 }
 
 .stat-box {
@@ -22,17 +29,21 @@
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    /* text-align: center; */
 }
-
+.stat-box:hover{
+    transform: scale(1.02);
+    box-shadow: 8px 10px 9px #2d436d;
+}
 .stat-icon {
     font-size: 30px;
     margin-right: 10px;
     color: #2c3e50;
+    margin-bottom: 10rem;
 }
 
 .stat-box h3 {
-    margin: 0;
+    /* margin: 0; */
     font-size: 22px;
 }
 
