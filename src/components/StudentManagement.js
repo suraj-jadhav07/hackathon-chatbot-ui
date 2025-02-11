@@ -30,6 +30,7 @@ const StudentManagement = () => {
   };
 
   const addStudent = () => {
+    const teacher_id= Number(localStorage.getItem('userId'));
     setLoading(true);
 
     const validationErrors = validateStudentForm(formData);
@@ -43,7 +44,8 @@ const StudentManagement = () => {
       .post(API_CONST.ADD_STUDENT, {
         first_name: formData.firstName,
         last_name: formData.lastName,
-        email: formData.email
+        email: formData.email,
+        teacher_id: teacher_id
       })
       .then((response) => {
         console.log("student added successfully:", response.data);
@@ -102,6 +104,8 @@ const StudentManagement = () => {
   };
 
   const updateStudent = (formData) => {
+    const teacher_id= Number(localStorage.getItem('userId'));
+    console.log(teacher_id,"teacherid")
     const validationErrors = validateStudentForm(formData);
     if (validationErrors && Object.keys(validationErrors).length) {
       setErrors(validationErrors);
@@ -112,7 +116,8 @@ const StudentManagement = () => {
     .put(`${API_CONST.EDIT_STUDENT}/${formData.id}`, { 
       first_name: formData.firstName,
       last_name: formData.lastName,
-      email: formData.email
+      email: formData.email,
+      teacher_id: teacher_id
     }
     )
     .then((response) => {
@@ -126,7 +131,7 @@ const StudentManagement = () => {
   };
 
   const getAllStudents = () => {
-    const teacher_id= localStorage.getItem('userId');
+    const teacher_id= Number(localStorage.getItem('userId'));
     axios
     .get(`${API_CONST.GET_STUDENT}?teacher_id=${teacher_id}`)
     .then((response) => {
