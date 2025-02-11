@@ -1,8 +1,8 @@
 import React from "react";
-import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaEnvelope,FaHistory  } from "react-icons/fa";
+import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaEnvelope,FaHistory,FaRegQuestionCircle   } from "react-icons/fa";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "../styles/Layout.css";
-
+import botLogo from "../images/bot-logo.png"
 const Layout = () => {
   const navigate = useNavigate();
 
@@ -18,7 +18,10 @@ const Layout = () => {
     <div className="layout-container">
       {/* Sidebar */}
       <aside className="layout-sidebar">
-        <h2 className="layout-logo">Arieo Iris Bot</h2>
+        {/* <h2 className="layout-logo"></h2> */}
+        <div className="layout-logo">
+          <img src={botLogo} alt="logo" /> 
+          </div>
         <ul className="layout-menu">
           <li>
             <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -46,7 +49,9 @@ const Layout = () => {
             </NavLink>
           </li>
         </ul>
-
+        <button className="help-button" onClick={handleLogout}>
+        <FaRegQuestionCircle className="icon" /> Help
+        </button>
         {/* Logout Button */}
         <button className="logout-button" onClick={handleLogout}>
           <FaSignOutAlt className="icon" /> Logout

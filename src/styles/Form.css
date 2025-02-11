@@ -1,25 +1,45 @@
 .form-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f7f9fc;
-    background-image: url('../images/AI_screen.webp');
+    background-image: url(../images/Image20250211162436.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; */
+
+
+    display: flex;
+        justify-content: end;
+        height: 100vh;
+        background-color: #2c3e50;
+        background-image: url(../images/landing-img.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
 }
 
 .form-box {
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* border-radius: 15px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     width: 350px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* border: 1px solid rgba(255, 255, 255, 0.5); */
     backdrop-filter: blur(7px);
+    /* padding: 27px; */
+    /* border-radius: 15px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    width: 350px;
+    /* border: 1px solid rgba(255, 255, 255, 0.5); */
+    backdrop-filter: blur(7px);
+    margin-right: 245px;
+    /* margin-top: 0px; */
+    flex: 0.3 1;
 }
 
 .form-header {
     font-size: 24px;
-    margin-bottom: 20px;
-    text-align: left;
+    margin-bottom: 15px;
+    text-align: center;
     color: white;
 }
 
@@ -64,6 +84,7 @@ input[type="text"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: medium;
 }
 
 .submit-button:hover {
@@ -90,7 +111,7 @@ a:hover {
     text-align: center;
     margin: 10px 0;
     font-size: 14px;
-    color: #aaa;
+    color: #ffffff;
 }
 
 .google-button,
@@ -120,7 +141,7 @@ a:hover {
 
 .signin-text {
     text-align: center;
-    font-size: 14px;
+    font-size: medium;
     margin-top: 10px;
     color: white;
 }
@@ -134,4 +155,12 @@ a:hover {
 
 .to-signup-signin {
     color: #CAF7FE;
+    font-size: medium;
+}
+
+.bot-logo img {
+    width: 18rem;
+    height: 14rem;
+    margin-left: 40px;
+    margin-bottom: 10px;
 }

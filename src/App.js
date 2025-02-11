@@ -1,8 +1,5 @@
 import './App.css';
-import Sidebar from './components/Sidebar';
 import ChatBox from './components/ChatBox';
-import message from './images/message.png';
-import BlankPage from './components/BlankPage';
 import Dashboard from './components/Dashboard';
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
@@ -18,11 +15,11 @@ import TeacherMailBox from './components/TeacherMailBox';
 
 
 function App() {
-  const [messageSent, setMessageSent] = useState(false);
+  // const [messageSent, setMessageSent] = useState(false);
 
-  const handleSendMessage = () => {
-    setMessageSent(true); // Message sent, heading disappears
-  };
+  // const handleSendMessage = () => {
+  //   setMessageSent(true);
+  // };
 
   return (
     <div className="container">

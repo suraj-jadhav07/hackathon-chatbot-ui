@@ -149,7 +149,7 @@ const StudentManagement = () => {
     <div className="student-management">
       <div className="student-management-header">
         <h1>Students</h1>
-        <p>Manage your student roster</p>
+        <p>"Transforming Student Management Through Innovation"</p>
         <button className="add-student-btn" onClick={() => setShowForm(!showForm)}
           disabled={isUpdateStudent}>
           <FaPlus /> Add Student

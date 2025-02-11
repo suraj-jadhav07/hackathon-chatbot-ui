@@ -33,7 +33,7 @@
 }
 .stat-box:hover{
     transform: scale(1.02);
-    box-shadow: 8px 10px 9px #2d436d;
+    box-shadow: 8px 10px 9px #babdc2;
 }
 .stat-icon {
     font-size: 30px;

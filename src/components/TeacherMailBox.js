@@ -22,7 +22,7 @@ const TeacherMailbox = () => {
       <div className="mailbox-header">
       <h1 className="mailbox-title">Teacher Mailbox</h1>
         <p className="mailbox-subtitle">
-          Review and check student exam responses
+        "Exam Answer Submission and Review System"
         </p>
         </div>
       <div className="mailbox-card">

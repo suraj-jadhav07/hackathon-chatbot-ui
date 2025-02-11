@@ -4,7 +4,7 @@ import "../styles/Common.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import { API_CONST } from "../core/constants";
-
+import botLogo from "../images/bot-logo.png"
 const Signup = () => {
 
     const navigate = useNavigate();
@@ -27,24 +27,24 @@ const Signup = () => {
             setErrors(validationErrors);
         } else {
             axios
-            .post(API_CONST.REGISTER, {
-                username: formData.name,
-                email: formData.email,
-                password: formData.password
-            })
-            .then((response) => {
-                console.log("Register successful:", response.data);
-                localStorage.setItem("email", formData.email);
-                setLoading(false);
-                setTimeout(() => {
+                .post(API_CONST.REGISTER, {
+                    username: formData.name,
+                    email: formData.email,
+                    password: formData.password
+                })
+                .then((response) => {
+                    console.log("Register successful:", response.data);
+                    localStorage.setItem("email", formData.email);
                     setLoading(false);
-                    navigate("/otp");
-                }, 2000);
-            })
-            .catch((error) => {
-                console.error("Register failed:", error.response?.data || error.message);
-                setLoading(false);
-            });
+                    setTimeout(() => {
+                        setLoading(false);
+                        navigate("/otp");
+                    }, 2000);
+                })
+                .catch((error) => {
+                    console.error("Register failed:", error.response?.data || error.message);
+                    setLoading(false);
+                });
 
         }
     }
@@ -87,16 +87,19 @@ const Signup = () => {
     return (
         <div className="form-container">
             <div className="form-box">
+                <div className="bot-logo">
+                    <img src={botLogo} alt="logo" />
+                </div>
                 <h2 className="form-header">Sign up</h2>
                 <form className="form">
                     <label className="input-label">Name</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full name" />
                     {errors && errors.name && <span className="error-form">{errors.name}</span>}
                     <label className="input-label">Email</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email"/>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
                     {errors && errors.email && <span className="error-form">{errors.email}</span>}
                     <label className="input-label">Password</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password"/>
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" />
                     {errors && errors.password && <span className="error-form">{errors.password}</span>}
                     {/* <label className="checkbox-container">
                         <input type="checkbox" /> I want to receive updates via email.

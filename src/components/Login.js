@@ -5,7 +5,7 @@ import "../styles/Form.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_CONST } from "../core/constants";
-
+import botLogo from "../images/bot-logo.png"
 
 const Login = () => {
     const navigate = useNavigate();
@@ -67,6 +67,9 @@ const Login = () => {
     return (
         <div className="form-container">
             <div className="form-box">
+            <div className="bot-logo">
+                    <img src={botLogo} alt="logo" />
+                </div>
                 <h2 className="form-header">Sign in</h2>
                 <form className="form" onSubmit={handleSubmit}>
                     <label className="input-label">Email</label>
@@ -80,8 +83,8 @@ const Login = () => {
                     </label> */}
                     <button className="submit-button" type="submit">Sign In</button>
                 </form>
-                <a href="#" className="link-forgot-password">Forgot your password?</a>
-                <div className="divider">or</div>
+                {/* <a href="#" className="link-forgot-password">Forgot your password?</a> */}
+                {/* <div className="divider">or</div> */}
                 {/* <button className="google-button">
                     <img src={googleLogo} alt="Google logo" className="logo" />
                     Sign In with Google

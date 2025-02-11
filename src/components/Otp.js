@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Common.css";
 import { API_CONST } from "../core/constants";
 import axios from "axios";
-
+import botLogo from "../images/bot-logo.png"
 const Otp = () => {
 
     const navigate = useNavigate();
@@ -73,6 +73,9 @@ const Otp = () => {
     return (
         <div className="otp-container">
             <div className="otp-box">
+            <div className="bot-logo">
+                    <img src={botLogo} alt="logo" />
+                </div>
                 <h2 className={`otp-verfication-heading ${showSignIn && "success"}`}>{showSignIn ? "OTP verified successfully..!!": "OTP Verification"}</h2>
                 <form className="otp-form">
                     <input className="enter-otp-box" type="text" placeholder="Enter OTP" value={otp} onChange={handleOtpChange} />
