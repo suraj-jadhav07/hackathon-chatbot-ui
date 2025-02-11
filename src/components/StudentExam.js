@@ -13,7 +13,6 @@ export default function StudentExam() {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const { examId, studentId } = useParams();
-
   // **Handle Input Change**
   const handleChange = (e, questionId) => {
     const updatedAnswers = answers.map((ans) =>
@@ -40,6 +39,7 @@ export default function StudentExam() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setLoading(true); // Start loading
       console.log("Final Answers:", answers);
           axios
           .post(API_CONST.SUBMIT_EXAM, {
@@ -56,17 +56,18 @@ export default function StudentExam() {
             setAnswers(initialAnswers);
             setShowModal(true);
             getAllQuestions();
+            setLoading(false); 
           })
           .catch((error) => {
             console.error("Questions submittion failed", error.response?.data || error.message);        
+            setLoading(false);
           });
         } 
   };
 
   useEffect(() => {
     getAllQuestions();
-  },[]);
-
+  });
   
   const getAllQuestions = () => {
     console.log(examId,studentId)
@@ -85,7 +86,7 @@ export default function StudentExam() {
         setAnswers(initialAnswers);
     })
     .catch((error) => {
-      setLoading(false);
+      console.error("Questions submittion failed", error.response?.data || error.message);        
     })
   }
 
@@ -109,8 +110,8 @@ export default function StudentExam() {
             {errors[question.id] && <p className="error-text">{errors[question.id]}</p>}
           </div>
         ))}
-        <button type="submit" className="submit-btn" onClick={handleSubmit}>
-          Submit All Answers
+        <button type="submit" className="submit-btn" disabled={loading} onClick={handleSubmit}>
+          {loading ? "Submitting..." : "Submit All Answers"}
         </button>
       </form>
 

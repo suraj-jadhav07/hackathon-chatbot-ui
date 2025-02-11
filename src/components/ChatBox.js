@@ -4,6 +4,7 @@ import { Edit, Delete } from "@mui/icons-material";
 import axios from "axios";
 import { API_CONST } from "../core/constants";
 import bot from "../images/chat-loader.webp"
+import mail_loader from "../images/mail.gif"
 
 const ChatBox = () => {
   const [chats, setChats] = useState({ "Chat 1": [] });
@@ -16,10 +17,13 @@ const ChatBox = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [maiLoading, setMaiLoading] = useState(false);
 
   const sendMessage = () => {
+    
     if (message.trim()) {
       setLoading(true);
+      setMaiLoading(false);
       const userMessage = { text: message, sender: "user" };
 
       setChats((prevChats) => {
@@ -42,10 +46,12 @@ const ChatBox = () => {
           setIsEmailEnabled(true); // Enable "Send Email" when bot responds
           setMessage("");
           setEditingIndex(null);
+          setMaiLoading(false);
         })
         .catch((error) => {
           console.error("Questions generation failed", error.response?.data || error.message);
           setLoading(false);
+          setMaiLoading(false);
         });
     }
   };
@@ -55,9 +61,10 @@ const ChatBox = () => {
 const questionsArray = currentChat
   .split(/\d+\.\s*/) // Splits at numbers followed by ". "
   .filter(q => q.trim() !== "") // Removes empty entries
-
+  setMaiLoading(true);
   if (!examName.trim()) {
-    setError("Exam name is required.");
+    setError("required");
+    setMaiLoading(false);
     return;
   }
     axios
@@ -71,9 +78,11 @@ const questionsArray = currentChat
         setError(""); // Clear error if input is valid
         setShowModal(true);
         setExamName(""); 
+        setMaiLoading(false);
       })
       .catch((error) => {
         console.error("Failed to send email:", error.response?.data || error.message);
+        setMaiLoading(false);
       });
   };
 
@@ -97,7 +106,7 @@ const questionsArray = currentChat
     <div className="chat-box-container">
       <div className="chat-box-header">
         <h1>Arieo Iris Bot</h1>
-        <p>Chat with me to create your exam</p>
+        <p>"Smart Learning Assessment Generator"</p>
       </div>
       <div className="chat-box-wrapper">
         {chats[activeChat].length === 0 && (
@@ -170,7 +179,7 @@ const questionsArray = currentChat
           {loading ? "Waiting..." : "Send Message"}
           </button>
           <button className="chat-box-email-btn" disabled={!isEmailEnabled} onClick={sendMail}>
-            Send Email
+          {maiLoading ?  <img src={mail_loader} alt="Loading..." className="bot-loader" /> : "Send Mail"}
           </button>
 
         </div>

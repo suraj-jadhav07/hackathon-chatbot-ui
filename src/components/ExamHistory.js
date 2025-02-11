@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/ExamHistory.css";
 import "../styles/Dashboard.css";
 import {FaTimes } from "react-icons/fa";
@@ -33,7 +33,7 @@ const ExamHistory = () => {
         <div className="history-container">
             <h1>Exam Records</h1>
             <p>
-                Previous exam question list
+            "Historical Question Bank and Exam Records"
             </p>
             <div className="history-cards">
 

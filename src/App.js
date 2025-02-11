@@ -8,7 +8,7 @@ import OTP from "./components/Otp";
 import StudentManagement from './components/StudentManagement';
 import CreateExam from './components/CreateExam';
 import Layout from './components/Layout';
-import React, { useState } from 'react';
+import React from 'react';
 import ExamHistory from './components/ExamHistory';
 import StudentExam from './components/StudentExam';
 import TeacherMailBox from './components/TeacherMailBox';

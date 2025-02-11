@@ -1,21 +1,35 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaCheckCircle } from "react-icons/fa";
 import "../styles/TeacherMailBox.css"
+import axios from "axios";
+import { API_CONST } from "../core/constants";
 
 const TeacherMailbox = () => {
-  const messages = [
-    {
-      email: "student1@example.com",
-      subject: "Math Exam Response",
-      date: "8/3/2024, 3:30:00 pm",
-    },
-    {
-      email: "student2@example.com",
-      subject: "Science Exam Response",
-      date: "8/3/2024, 5:00:00 pm",
-    },
-  ];
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    getAllStudents();
+  },[]);
+
+  const getAllStudents = () => {
+    const teacher_id= Number(localStorage.getItem('userId'));
+    axios
+    .get(`${API_CONST.GET_ALL_STUDENTS}?teacher_id=${teacher_id}`)
+    .then((response) => {
+      console.log("get students data:", response.data);
+      setStudents(response.data.submitted_students)
+    
+    })
+    .catch((error) => {
+      console.error("get data failed:", error.response?.data || error.message);        
+      
+    })
+  }
+
+  console.log(students,"students")
+
+
 
   return (
     <div className="mailbox-container">
@@ -32,12 +46,12 @@ const TeacherMailbox = () => {
         </div>
 
         <div className="mailbox-list">
-          {messages.map((message, index) => (
+          {students.map((student, index) => (
             <div key={index} className="mailbox-item">
               <div className="mailbox-info">
-                <p className="mailbox-email">{message.email}</p>
-                <p className="mailbox-subject">{message.subject}</p>
-                <p className="mailbox-date">{message.date}</p>
+                <p className="mailbox-email">{student.email}</p>
+                <p className="mailbox-subject">{student.exam_id}</p>
+                <p className="mailbox-date">{student.submitted_date}</p>
               </div>
               <button className="mailbox-button">
                 <FaCheckCircle className="button-icon" />

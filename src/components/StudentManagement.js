@@ -34,7 +34,6 @@ const StudentManagement = () => {
     setLoading(true);
 
     const validationErrors = validateStudentForm(formData);
-    const url = "";
 
     if (validationErrors && Object.keys(validationErrors).length) {
       setErrors(validationErrors);
