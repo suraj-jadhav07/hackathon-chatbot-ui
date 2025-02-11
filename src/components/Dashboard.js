@@ -109,7 +109,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Dashboard</h1>
-      <p>Welcome Teacher</p>
+      <p>Welcome <b>{localStorage.getItem('userName')} !!!</b></p>
       <div className="dashboard-stats">
         {/* Students Count Box */}
         <div className="stat-box">

@@ -1,68 +1,115 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { API_CONST } from "../core/constants";
 import "../styles/StudentExam.css";
+import { useParams } from "react-router-dom";
 
 export default function StudentExam() {
-  const [answers, setAnswers] = useState({
-    q1: "",
-    q2: "",
-    q3: "",
-    q4: "",
-    q5: "",
-  });
+  const [answers, setAnswers] = useState([]);
+
+  const [questions, setQuestions] = useState([]);
 
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { examId, studentId } = useParams();
 
-  const handleChange = (e) => {
-    setAnswers({ ...answers, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" }); // Clear errors when user types
+  // **Handle Input Change**
+  const handleChange = (e, questionId) => {
+    const updatedAnswers = answers.map((ans) =>
+      ans.question_id === questionId ? { ...ans, answer_text: e.target.value } : ans
+    );
+
+    setAnswers(updatedAnswers);
+    setErrors({ ...errors, [questionId]: "" }); // Clear error when user types
   };
 
-  const validateForm = () => {
+   // **Validation Function**
+   const validateForm = () => {
     let newErrors = {};
-    Object.keys(answers).forEach((key) => {
-      if (!answers[key].trim()) {
-        newErrors[key] = "This field is required.";
+    answers.forEach((ans) => {
+      if (!ans.answer_text.trim()) {
+        newErrors[ans.question_id] = "This field is required.";
       }
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // **Handle Form Submit**
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setShowModal(true);
-    }
+      console.log("Final Answers:", answers);
+          axios
+          .post(API_CONST.SUBMIT_EXAM, {
+            exam_id: examId,
+            student_id: studentId,
+            answers: answers
+          })
+          .then((response) => {
+            console.log("answers submitted successfully", response.data);
+            const initialAnswers = questions.map((q) => ({
+              question_id: q.id,
+              answer_text: "",
+            }));
+            setAnswers(initialAnswers);
+            setShowModal(true);
+            getAllQuestions();
+          })
+          .catch((error) => {
+            console.error("Questions submittion failed", error.response?.data || error.message);        
+          });
+        } 
   };
+
+  useEffect(() => {
+    getAllQuestions();
+  },[]);
+
+  
+  const getAllQuestions = () => {
+    console.log(examId,studentId)
+    axios
+    .get(`${API_CONST.GET_QUESTIONS}?exam_id=${examId}&student_id=${studentId}`)
+    .then((response) => {
+      console.log("GET_QUESTIONS:", response.data.questions);
+      console.log(response.data.questions.question_text);
+      setQuestions(response.data.questions);
+       // Initialize answers dynamically
+        // Initialize answers dynamically
+        const initialAnswers = response.data.questions.map((q) => ({
+          question_id: q.id,
+          answer_text: "",
+        }));
+        setAnswers(initialAnswers);
+    })
+    .catch((error) => {
+      setLoading(false);
+    })
+  }
 
   return (
     <div className="student-exam-container">
       <h2 className="title">Student Exam</h2>
       <p className="subtitle">Please answer all questions carefully</p>
       <form onSubmit={handleSubmit}>
-        {[
-          { label: "What is the capital of France?", name: "q1" },
-          { label: "Explain the process of photosynthesis.", name: "q2" },
-          { label: "Solve the equation: 2x + 5 = 15", name: "q3" },
-          { label: "What are the main themes in Shakespeare's Hamlet?", name: "q4" },
-          { label: "Describe the water cycle.", name: "q5" },
-        ].map((question, index) => (
-          <div key={index} className="question-box">
+        {questions.map((question, index) => (
+          <div key={question.id} className="question-box">
             <label>
-              {`Question ${index + 1}: ${question.label}`} <span className="required">*</span>
+              {`Question ${index + 1}: ${question.question_text}`} <span className="required">*</span>
             </label>
             <textarea
-              name={question.name}
-              value={answers[question.name]}
-              onChange={handleChange}
-              className={errors[question.name] ? "error" : ""}
-              placeholder="Type your answer here.."
+              name={question.id} // Unique name for each question
+              value={answers.find((ans) => ans.question_id === question.id)?.answer_text || ""}
+              onChange={(e) => handleChange(e, question.id)}
+              className={errors[question.id] ? "error" : ""}
+              placeholder="Type your answer here..."
             ></textarea>
-            {errors[question.name] && <p className="error-text">{errors[question.name]}</p>}
+            {errors[question.id] && <p className="error-text">{errors[question.id]}</p>}
           </div>
         ))}
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="submit-btn" onClick={handleSubmit}>
           Submit All Answers
         </button>
       </form>

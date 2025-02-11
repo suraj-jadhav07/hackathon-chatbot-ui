@@ -34,7 +34,7 @@ function App() {
           <Route path="/otp" element={<OTP />} />
           <Route path="/chatbox" element={<ChatBox />} />
           <Route path="/layout" element={<Layout />} />
-          <Route path="studentExam" element={<StudentExam />} />
+          <Route path="/exam/:examId/student/:studentId" element={<StudentExam />} />
 
 
         {/* Protected Routes - Wrapped in Layout */}

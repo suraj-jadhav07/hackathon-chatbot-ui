@@ -54,8 +54,10 @@ const Login = () => {
               email,
               password,
             });
-            navigate("/chatbox");
+            navigate("/dashboard");
             console.log("Login successful:", response.data);
+            localStorage.setItem("userId", response.data.user.id);
+            localStorage.setItem("userName", response.data.user.username);
           } catch (err) {
             console.error("Login failed:", err.response?.data || err.message);
             setErrors(err.response?.data?.message || "Login failed");

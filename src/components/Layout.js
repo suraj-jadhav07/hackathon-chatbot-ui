@@ -9,6 +9,7 @@ const Layout = () => {
   const handleLogout = () => {
     // Perform logout logic here (e.g., clearing auth tokens, redirecting)
     console.log("User logged out");
+    localStorage.clear();
     navigate("/"); // Redirect to login page
   };
 

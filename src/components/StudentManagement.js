@@ -126,8 +126,9 @@ const StudentManagement = () => {
   };
 
   const getAllStudents = () => {
+    const teacher_id= localStorage.getItem('userId');
     axios
-    .get(API_CONST.GET_STUDENT)
+    .get(`${API_CONST.GET_STUDENT}?teacher_id=${teacher_id}`)
     .then((response) => {
       console.log("get students:", response.data);
       setStudents(response.data);
