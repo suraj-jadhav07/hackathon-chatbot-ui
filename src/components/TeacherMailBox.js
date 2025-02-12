@@ -51,7 +51,7 @@ const TeacherMailbox = () => {
                 <div key={index} className="mailbox-item">
                   <div className="mailbox-info">
                     <p className="mailbox-email">{student.email}</p>
-                    <p className="mailbox-subject">{student.exam_id}</p>
+                    <p className="mailbox-subject">{student.exam_title}</p>
                     <p className="mailbox-date">{student.submitted_date}</p>
                   </div>
                   <button className="mailbox-button">
