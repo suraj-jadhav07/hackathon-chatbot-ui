@@ -12,6 +12,7 @@ export const API_CONST = {
     SUBMIT_EXAM: 'http://127.0.0.1:8003/submit_exam_with_result',
     GET_DASHBOARD: 'http://127.0.0.1:8003/dashboard',
     GET_STUDENT_ANSWERS: 'http://127.0.0.1:8003/student_answers',
-    GET_ALL_STUDENTS: 'http://127.0.0.1:8003/submitted_students'
+    GET_ALL_STUDENTS: 'http://127.0.0.1:8003/submitted_students',
+    GET_ALL_EXAMS: 'http://127.0.0.1:8003/exams'
 
 }

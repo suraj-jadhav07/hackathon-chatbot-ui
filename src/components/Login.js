@@ -58,6 +58,7 @@ const Login = () => {
             console.log("Login successful:", response.data);
             localStorage.setItem("userId", response.data.user.id);
             localStorage.setItem("userName", response.data.user.username);
+            localStorage.setItem("token",response.data.token)
           } catch (err) {
             console.error("Login failed:", err.response?.data || err.message);
             setErrors(err.response?.data?.message || "Login failed");
