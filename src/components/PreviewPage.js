@@ -68,9 +68,9 @@ const PreviewPage = () => {
                         <p>
                             <strong>Student's answer:</strong> {q.answer_text}
                         </p>
-                        {/* <p className={q.evaluation === "Correct" ? "correct" : "incorrect"}>
-                            <strong>Evaluation:</strong> {q.evaluation}
-                        </p> */}
+                        <p className={q.marks_obtained === 0 ? "incorrect" : "correct"}>
+                            <strong>Evaluation:</strong> {q.marks_obtained === 0 ? "incorrect" : "correct"}
+                        </p>
                         <p>
                             <strong>Marks Obtained:</strong> {q.marks_obtained}
                         </p>
