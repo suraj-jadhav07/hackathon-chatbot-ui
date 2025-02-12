@@ -38,9 +38,9 @@ const TeacherMailbox = () => {
       })
   }
 
-  const handlePreview = (studentId) => {
+  const handlePreview = (studentId,examId) => {
     console.log("Preview button clicked!",studentId);
-    navigate(`/dashboard/preview/${studentId}`); // Navigating to preview page with studentId
+    navigate(`/dashboard/preview/${examId}/${studentId}`); // Navigating to preview page with studentId
     // Add your logic here (e.g., navigate, open a modal, etc.)
   };
 
@@ -68,7 +68,7 @@ const TeacherMailbox = () => {
                     <p className="mailbox-subject">{student.exam_title}</p>
                     <p className="mailbox-date">{student.submitted_date}</p>
                   </div>
-                  <button className="mailbox-button" onClick={() => handlePreview(student.student_id)}>
+                  <button className="mailbox-button" onClick={() => handlePreview(student.student_id, student.exam_id)}>
                     <FaCheckCircle className="button-icon" />
                     Preview
                   </button>

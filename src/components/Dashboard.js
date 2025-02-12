@@ -51,8 +51,7 @@ const Dashboard = () => {
       ) : (
         <>
           <h1 className="dashboard-title">Dashboard</h1>
-          <p>Welcome <b>{localStorage.getItem('userName')} !!!</b></p>
-          <p>"Modern Teaching Management Platform"</p>
+          <p>Welcome <b>{localStorage.getItem('userName')}</b></p>
           <div className="dashboard-stats">
             {/* Students Count Box */}
             <div className="stat-box">

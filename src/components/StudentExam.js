@@ -69,7 +69,7 @@ export default function StudentExam() {
 
   useEffect(() => {
     getAllQuestions();
-  });
+  },[]);
 
   const getAllQuestions = () => {
     console.log(examId, studentId);
@@ -126,7 +126,7 @@ export default function StudentExam() {
           {showModal && (
             <div className="modal-overlay">
               <div className="modal">
-                <h3>Form Submitted Successfully! ✅</h3>
+                <h3>Form Submitted Successfully ✅</h3>
                 <p>Thank you for completing the exam.</p>
                 <button onClick={() => setShowModal(false)}>Close</button>
               </div>

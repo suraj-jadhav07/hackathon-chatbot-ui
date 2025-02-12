@@ -22,7 +22,7 @@ const Otp = () => {
             let email = localStorage.getItem("email");
             axios
             .post(API_CONST.VERIFY_OTP, {
-                otp: Number(otp),
+                otp: otp,
                 email
             })
             .then((response) => {
@@ -30,7 +30,7 @@ const Otp = () => {
                 setTimeout(() => {
                     setLoading(false);
                     setShowSignIn(true);
-                    navigate("/chatbox");
+                    navigate("/dashboard");
                     localStorage.removeItem("email");
                     setError("");
                 }, 2000);

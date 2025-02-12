@@ -43,7 +43,7 @@ function App() {
           <Route path="chatbox" element={<ChatBox />} />
           <Route path="examHistory" element={<ExamHistory />} />
           <Route path="mailbox" element={<TeacherMailBox />} />
-          <Route path="preview/:studentId" element={<PreviewPage />} />
+          <Route path="preview/:examId/:studentId" element={<PreviewPage />} />
 
 
         </Route>

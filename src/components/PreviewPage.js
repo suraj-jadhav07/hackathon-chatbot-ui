@@ -1,58 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/PreviewPage.css"
+import axios from "axios";
+import { API_CONST } from "../core/constants";
+import { useParams } from "react-router-dom";
 
 const PreviewPage = () => {
+    const { studentId, examId } = useParams(); // Retrieve studentId from URL
+    const [studentDetails, setStudentDetails] = useState({});
+    const [submittedAnswers,setSubmittedAnswers]= useState([]);
 
-    const student = [
-        {
-            name: "Student",
-            email: "student@gmail.com",
-            topic: "Famous Historical Figures and Landmarks"
-        }
-    ]
+ 
 
-    const questions = [
-        { que: "Who discovered America?", answer: "Christopher Columbus discovered America in 1492.He was an explorer from Italy who sailed for Spain", evaluation: "Incorrect", marks: 0 },
-        { que: "Who was Dr. B.R. Ambedkar?", answer: "Dr. B.R. Ambedkar was an Indian social reformer and politician.He played a key role in drafting the Indian Constitution.", evaluation: "Correct", marks: 1 },
-        { que: "Who was the first man to walk on the moon?", answer: "Neil Armstrong was the first man to walk on the moon in 1969.He was an astronaut on the Apollo 11 mission.", evaluation: "Correct", marks: 1 },
-        { que: "Who was the Father of India?", answer: "Mahatma Gandhi is known as the Father of India.He led India’s freedom movement using non-violence.", evaluation: "Incorrect", marks: 0 },
-        { que: "What is the Great Wall of China?", answer: "The Great Wall of China is a long wall built for protection.It was built by Chinese emperors to stop invaders.", evaluation: "Correct", marks: 1 },
-    ];
+
+    useEffect(() => {
+        getStudentAnswers();
+    }, []);
+
+    const getStudentAnswers = () => {
+        const token = localStorage.getItem("token");
+        axios
+            .get(`${API_CONST.GET_STUDENT_ANSWERS}?exam_id=${examId}&student_id=${studentId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            })
+            .then((response) => {
+                console.log("get answers:", response.data);
+                setStudentDetails(response.data.student_details);
+                setSubmittedAnswers(response.data.submitted_answers);
+               
+
+            })
+            .catch((error) => {
+                console.error("get answers data failed:", error.response?.data || error.message);
+
+            })
+    }
+  
 
     return (
         <div className="preview-container">
             <h2>Preview of Student's Exam</h2>
 
             <div className="student-details">
-                {student.map((s) => (
-                    <div key={s.name} className="student-details-box">
+                
+                    <div key={studentDetails.first_name} className="student-details-box">
                         <p>
-                            <strong>Name:</strong> {s.name}
+                            <strong>Name:</strong> {studentDetails.first_name}
                         </p>
                         <p>
-                            <strong>Email:</strong> {s.email}
+                            <strong>Email:</strong> {studentDetails.email}
                         </p>
                         <p>
-                            <strong>Topic:</strong> {s.topic}
+                            <strong>Exam Name:</strong> {studentDetails.exam_title}
                         </p>
                     </div>
-                ))}
+             
             </div>
 
             <div className="result-container">
-                {questions.map((q) => (
+                {submittedAnswers.map((q) => (
                     <div key={q.que} className="question-box">
                         <p>
-                            <strong>Question:</strong> {q.que}
+                            <strong>Question:</strong> {q.question_text}
                         </p>
                         <p>
-                            <strong>Student's answer:</strong> {q.answer}
+                            <strong>Student's answer:</strong> {q.answer_text}
                         </p>
-                        <p className={q.evaluation === "Correct" ? "correct" : "incorrect"}>
+                        {/* <p className={q.evaluation === "Correct" ? "correct" : "incorrect"}>
                             <strong>Evaluation:</strong> {q.evaluation}
-                        </p>
+                        </p> */}
                         <p>
-                            <strong>Marks Obtained:</strong> {q.marks}
+                            <strong>Marks Obtained:</strong> {q.marks_obtained}
                         </p>
                         <hr />
                     </div>

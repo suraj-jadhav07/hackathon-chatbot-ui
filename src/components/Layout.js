@@ -3,6 +3,8 @@ import { FaUserGraduate, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaEnvelope,F
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "../styles/Layout.css";
 import botLogo from "../images/bot-logo.png"
+import helpDoc from "../images/AI tutor Bot.pdf"
+
 const Layout = () => {
   const navigate = useNavigate();
 
@@ -12,6 +14,12 @@ const Layout = () => {
     localStorage.clear();
     navigate("/"); // Redirect to login page
   };
+
+  const handleHelpClick = () => {
+    window.open(helpDoc, "_blank");
+  };
+
+
 
 
   return (
@@ -49,7 +57,7 @@ const Layout = () => {
             </NavLink>
           </li>
         </ul>
-        <button className="help-button" onClick={handleLogout}>
+        <button className="help-button" onClick={handleHelpClick}>
         <FaRegQuestionCircle className="icon" /> Help
         </button>
         {/* Logout Button */}

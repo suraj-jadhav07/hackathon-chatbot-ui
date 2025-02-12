@@ -4,7 +4,7 @@ import { Edit, Delete } from "@mui/icons-material";
 import axios from "axios";
 import { API_CONST } from "../core/constants";
 import bot from "../images/chat-loader.webp"
-import mail_loader from "../images/mail.gif"
+import mail_loader from "../images/mail4.gif"
 
 const ChatBox = () => {
   const [chats, setChats] = useState({ "Chat 1": [] });
@@ -120,7 +120,7 @@ const questionsArray = currentChat
   return (
     <div className="chat-box-container">
       <div className="chat-box-header">
-        <h1>Arieo Iris Bot</h1>
+        <h1>arieo Iris Bot</h1>
         <p>"Smart Learning Assessment Generator"</p>
       </div>
       <div className="chat-box-wrapper">
@@ -203,7 +203,7 @@ const questionsArray = currentChat
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
-            <h3>Email Sent Successfully! ✅</h3>
+            <h3>Email Sent Successfully ✅</h3>
             <button onClick={() => setShowModal(false)}>Close</button>
           </div>
         </div>

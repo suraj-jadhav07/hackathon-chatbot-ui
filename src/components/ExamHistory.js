@@ -13,9 +13,11 @@ const ExamHistory = () => {
     const [selectedExam, setSelectedExam] = useState(null);
 
     const handleCardClick = (exam) => {
+        console.log("Selected Exam:", exam); // Debugging log
         setSelectedExam(exam);
         setIsOpen(true);
     };
+    
 
     useEffect(() => {
         getAllExams();
@@ -33,7 +35,7 @@ const ExamHistory = () => {
             })
             .then((response) => {
                 console.log("get all exams:", response.data);
-                setTotalExams(response.data);
+                setTotalExams(Array.isArray(response.data) ? response.data : [response.data]);
 
             })
             .catch((error) => {
@@ -72,14 +74,22 @@ const ExamHistory = () => {
 
 
             {isOpen && selectedExam && (
-                <div className="popup-overlay">
-                    <div className="popup-content">
-                        <FaTimes className="close-icon" onClick={() => setIsOpen(false)} />
-                        <h3>Exam Title</h3>
-                        <p>{selectedExam.title}</p>
-                    </div>
-                </div>
-            )}
+    <div className="popup-overlay">
+        <div className="popup-content">
+            <FaTimes className="close-icon" onClick={() => setIsOpen(false)} />
+            <h3>Exam Title</h3>
+            <p>{selectedExam.title}</p>
+
+            <h4>Questions:</h4>
+            <ul>
+                {selectedExam.questions.map((question) => (
+                    <li key={question.question_id}>{question.question_text}</li>
+                ))}
+            </ul>
+        </div>
+    </div>
+)}
+
 
         </div>
     );
