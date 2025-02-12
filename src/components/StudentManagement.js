@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import "../styles/StudentManagement.css";
 import axios from "axios";
+import PageSpinner from "./PageSpinner";
 import { API_CONST } from "../core/constants";
 
 const StudentManagement = () => {
@@ -18,6 +19,7 @@ const StudentManagement = () => {
   const [showForm, setShowForm] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
   const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "" });
   const [isUpdateStudent, setIsUpdateStudent] = useState(false);
 
@@ -130,15 +132,19 @@ const StudentManagement = () => {
   };
 
   const getAllStudents = () => {
+    setShowSpinner(true);
     const teacher_id= Number(localStorage.getItem('userId'));
     axios
     .get(`${API_CONST.GET_STUDENT}?teacher_id=${teacher_id}`)
     .then((response) => {
       console.log("get students:", response.data);
       setStudents(response.data);
+      setShowSpinner(false);
     })
     .catch((error) => {
+      console.log("error:", error);
       setLoading(false);
+      setShowSpinner(false);
     })
   }
 
@@ -197,7 +203,10 @@ const StudentManagement = () => {
           </div>
         </div>
       )}
-
+      {showSpinner ? (
+        <PageSpinner />
+      ) : (
+        <>
       <table className="student-management-table">
         <thead>
           <tr>
@@ -220,7 +229,7 @@ const StudentManagement = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></>)}
     </div>
   );
 };
