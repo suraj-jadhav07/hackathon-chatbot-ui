@@ -20,7 +20,7 @@ const ChatBox = () => {
   const [maiLoading, setMaiLoading] = useState(false);
 
   const sendMessage = () => {
-    
+    const token = localStorage.getItem("token");
     if (message.trim()) {
       setLoading(true);
       setMaiLoading(false);
@@ -33,8 +33,14 @@ const ChatBox = () => {
       axios
         .post(API_CONST.ASK_QUESTIONS, {
           question: message
-        })
-        .then((response) => {
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add Bearer token here
+            'Content-Type': 'application/json', // Optional, ensures JSON format
+          },
+        }
+      ).then((response) => {
 
           const botResponse = { text: response.data.answer, sender: "bot" };
           setCurrentChat(response.data.answer);
@@ -57,7 +63,8 @@ const ChatBox = () => {
   };
 
   const sendMail = () => {
-
+    console.log(examName,"examName")
+    const token = localStorage.getItem("token");
 const questionsArray = currentChat
   .split(/\d+\.\s*/) // Splits at numbers followed by ". "
   .filter(q => q.trim() !== "") // Removes empty entries
@@ -72,7 +79,14 @@ const questionsArray = currentChat
         user_id: localStorage.getItem('userId'),
         title: examName, 
         questions: questionsArray,
-      })
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add Bearer token here
+          'Content-Type': 'application/json', // Optional, ensures JSON format
+        },
+      }
+    )
       .then((response) => {
         console.log("Email sent successfully:", response.data);
         setError(""); // Clear error if input is valid
@@ -83,6 +97,7 @@ const questionsArray = currentChat
       .catch((error) => {
         console.error("Failed to send email:", error.response?.data || error.message);
         setMaiLoading(false);
+        setError(""); // Clear error if input is valid
       });
   };
 

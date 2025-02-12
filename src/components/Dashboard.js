@@ -20,8 +20,14 @@ const Dashboard = () => {
   const getAllData = () => {
     setLoading(true);
     const teacher_id= Number(localStorage.getItem('userId'));
+    const token = localStorage.getItem("token");
     axios
-    .get(`${API_CONST.GET_DASHBOARD}?teacher_id=${teacher_id}`)
+    .get(`${API_CONST.GET_DASHBOARD}?teacher_id=${teacher_id}`, {
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  })
     .then((response) => {
       console.log("get data:", response.data);
       if (response.data.length > 0) {

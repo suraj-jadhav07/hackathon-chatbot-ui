@@ -5,10 +5,12 @@ import "../styles/TeacherMailBox.css"
 import axios from "axios";
 import { API_CONST } from "../core/constants";
 import PageSpinner from "./PageSpinner";
+import { useNavigate } from "react-router-dom";
 
 const TeacherMailbox = () => {
   const [students, setStudents] = useState([]);
   const [showSpinner, setShowSpinner] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllStudents();
@@ -17,8 +19,14 @@ const TeacherMailbox = () => {
   const getAllStudents = () => {
     setShowSpinner(true);
     const teacher_id = Number(localStorage.getItem('userId'));
+    const token = localStorage.getItem("token");
     axios
-      .get(`${API_CONST.GET_ALL_STUDENTS}?teacher_id=${teacher_id}`)
+      .get(`${API_CONST.GET_ALL_STUDENTS}?teacher_id=${teacher_id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    })
       .then((response) => {
         console.log("get students data:", response.data);
         setStudents(response.data.submitted_students)
@@ -29,6 +37,12 @@ const TeacherMailbox = () => {
         setShowSpinner(false);
       })
   }
+
+  const handlePreview = (studentId) => {
+    console.log("Preview button clicked!",studentId);
+    navigate(`/dashboard/preview/${studentId}`); // Navigating to preview page with studentId
+    // Add your logic here (e.g., navigate, open a modal, etc.)
+  };
 
 
   return (
@@ -54,7 +68,7 @@ const TeacherMailbox = () => {
                     <p className="mailbox-subject">{student.exam_title}</p>
                     <p className="mailbox-date">{student.submitted_date}</p>
                   </div>
-                  <button className="mailbox-button">
+                  <button className="mailbox-button" onClick={() => handlePreview(student.student_id)}>
                     <FaCheckCircle className="button-icon" />
                     Preview
                   </button>

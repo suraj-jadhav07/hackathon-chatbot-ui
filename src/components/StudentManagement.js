@@ -33,6 +33,7 @@ const StudentManagement = () => {
 
   const addStudent = () => {
     const teacher_id= Number(localStorage.getItem('userId'));
+    const token = localStorage.getItem("token");
     setLoading(true);
 
     const validationErrors = validateStudentForm(formData);
@@ -47,7 +48,12 @@ const StudentManagement = () => {
         last_name: formData.lastName,
         email: formData.email,
         teacher_id: teacher_id
-      })
+      }, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    })
       .then((response) => {
         console.log("student added successfully:", response.data);
         setFormData({ firstName: "", lastName: "", email: "" });
@@ -92,8 +98,14 @@ const StudentManagement = () => {
   }
 
   const deleteStudent = (id) => {
+    const token = localStorage.getItem("token");
     axios
-    .delete(`${API_CONST.DELETE_STUDENT}/${id}`)
+    .delete(`${API_CONST.DELETE_STUDENT}/${id}`, {
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  })
     .then((response) => {
       console.log("get Students list:", response.data);
       getAllStudents();
@@ -106,7 +118,7 @@ const StudentManagement = () => {
 
   const updateStudent = (formData) => {
     const teacher_id= Number(localStorage.getItem('userId'));
-    console.log(teacher_id,"teacherid")
+    const token = localStorage.getItem("token");
     const validationErrors = validateStudentForm(formData);
     if (validationErrors && Object.keys(validationErrors).length) {
       setErrors(validationErrors);
@@ -120,7 +132,12 @@ const StudentManagement = () => {
       email: formData.email,
       teacher_id: teacher_id
     }
-    )
+    , {
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  })
     .then((response) => {
       getAllStudents();
       setFormData({ id: "", firstName: "", lastName: "", email: "" });
@@ -134,8 +151,14 @@ const StudentManagement = () => {
   const getAllStudents = () => {
     setShowSpinner(true);
     const teacher_id= Number(localStorage.getItem('userId'));
+    const token = localStorage.getItem("token");
     axios
-    .get(`${API_CONST.GET_STUDENT}?teacher_id=${teacher_id}`)
+    .get(`${API_CONST.GET_STUDENT}?teacher_id=${teacher_id}`, {
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+      }
+  })
     .then((response) => {
       console.log("get students:", response.data);
       setStudents(response.data);
