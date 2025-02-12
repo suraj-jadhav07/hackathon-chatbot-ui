@@ -1,0 +1,57 @@
+.preview-container {
+    max-width: 600px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    height: 40rem;
+    margin-top: 25px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .student-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+    
+  .student-details-box {
+    padding: 10px;
+    background-color: #fff;
+    border: 3px solid #ddd;
+  }
+  .result-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  .question-box {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+
+  
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .incorrect {
+    color: red;
+    font-weight: bold;
+  }
+  

@@ -125,7 +125,7 @@ const questionsArray = currentChat
                     <p key={i}>{line}</p>
                   ))}
                 </div>
-                <div className="message-actions">
+                <div>
                   {msg.sender === "user" ? <>
                     <span onClick={() => handleEditMessage(index)} className="edit-icon">
                       <Edit fontSize="small" />
