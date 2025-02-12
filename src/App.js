@@ -12,6 +12,7 @@ import React from 'react';
 import ExamHistory from './components/ExamHistory';
 import StudentExam from './components/StudentExam';
 import TeacherMailBox from './components/TeacherMailBox';
+import PreviewPage from './components/PreviewPage';
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
           <Route path="chatbox" element={<ChatBox />} />
           <Route path="examHistory" element={<ExamHistory />} />
           <Route path="mailbox" element={<TeacherMailBox />} />
+          <Route path="preview" element={<PreviewPage />} />
+
 
         </Route>
 
